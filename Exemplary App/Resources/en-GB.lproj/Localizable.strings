@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Exemplary App
+
+  Created by Герман Иванилов on 25/10/2021.
+*/
+
+"common.create" = "Create";
+
+"createTask.title.placeholder" = "Task Name";
+"createTask.desctiption.placeholder" = "Description";
+

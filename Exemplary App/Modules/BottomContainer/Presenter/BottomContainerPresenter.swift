@@ -9,7 +9,7 @@ import UIKit
 
 protocol BottomContainerOutput {
     func viewIsReady()
-    func viewTapped()
+    func didTapOutsideContainer()
 }
 
 class BottomContainerPresenter {
@@ -32,7 +32,7 @@ extension BottomContainerPresenter: BottomContainerOutput {
         }
     }
     
-    func viewTapped() {
+    func didTapOutsideContainer() {
         router.close()
     }
 }

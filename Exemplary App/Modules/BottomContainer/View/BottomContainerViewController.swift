@@ -16,42 +16,47 @@ class BottomContainerViewController: UIViewController {
     var output: BottomContainerOutput!
     
     private let containerView = UIView()
+    private let outsideButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupViews()
+        outsideButton.backgroundColor = .clear
+        outsideButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         setupLayout()
-        
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewTapped)))
         
         output.viewIsReady()
     }
     
-    private func setupViews() {
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 1) {
+            self.view.backgroundColor = Theme.currentTheme.color.grey
+        }
+    }
+ 
+    private func setupLayout() {
+        view.addSubview(outsideButton)
         view.addSubview(containerView)
         
-    }
-    
-    private func setupLayout() {
+        outsideButton.snp.makeConstraints { make in
+            make.leading.top.trailing.equalToSuperview()
+            make.bottom.equalTo(containerView.snp.top)
+            make.height.greaterThanOrEqualTo(100)
+        }
+        
         containerView.snp.makeConstraints { make in
-            make.bottom.equalTo(view)
-            make.leading.trailing.equalTo(view)
-            make.height.equalTo(200)
+            make.leading.trailing.bottom.equalTo(view)
         }
     }
     
-    @objc private func viewTapped(_ sender: UITapGestureRecognizer) {
-        if sender.location(in: containerView).y < 0 {
-            output.viewTapped()
-        }
+    @objc private func buttonPressed(_ sender: UIButton) {
+        output.didTapOutsideContainer()
     }
 }
 
 extension BottomContainerViewController: BottomContainerInput {
     func setupContainer(with contentViewController: UIViewController) {
         addChild(contentViewController)
-        contentViewController.view.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(contentViewController.view)
         contentViewController.view.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalTo(containerView)

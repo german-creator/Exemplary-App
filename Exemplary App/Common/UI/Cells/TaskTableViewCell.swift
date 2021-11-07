@@ -38,9 +38,9 @@ class TaskTableViewCell: UITableViewCell {
     private let rightImageViewSize = CGFloat(18)
     
     
-    var viewModel:TaskViewModel? {
+    var viewModel:Task? {
         didSet {
-            updateContent()
+            setupTask()
         }
     }
     
@@ -78,12 +78,12 @@ class TaskTableViewCell: UITableViewCell {
         statusView.snp.makeConstraints { make in
             make.width.height.equalTo(statusViewSize)
             make.centerY.equalToSuperview()
-            make.leading.equalTo(self.snp.leading).offset(Constants.largeMargin)
+            make.leading.equalToSuperview().offset(Constants.largeMargin)
         }
         
         stackView.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top).offset(Constants.mediumMargin)
-            make.bottom.equalTo(self.snp.bottom).offset(-Constants.mediumMargin)
+            make.top.equalToSuperview().offset(Constants.mediumMargin)
+            make.bottom.equalToSuperview().offset(-Constants.mediumMargin)
             make.leading.equalTo(statusView.snp.trailing).offset(Constants.smallMargin)
             make.trailing.lessThanOrEqualTo(rightImageView).offset(Constants.mediumMargin)
         }
@@ -95,7 +95,7 @@ class TaskTableViewCell: UITableViewCell {
         }
     }
     
-    private func updateContent() {
+    private func setupTask() {
         switch viewModel?.status {
         case .base:
             statusView.backgroundColor = Theme.currentTheme.color.mainAccentLight
@@ -118,11 +118,8 @@ class TaskTableViewCell: UITableViewCell {
         
         titleLabel.styledText = viewModel?.title
         
-        if let date = viewModel?.date  {
-            let dataFormate: DateFormatter = .displayDayFormatter
-            dateLabel.styledText = dataFormate.string(from: date)
+        if let date = viewModel?.date?.date {
+            dateLabel.styledText = DateFormatter.displayDayFormatter.string(from: date)
         }
-        
-        rightImageView.isHidden = viewModel?.addInfo ?? true
     }
 }

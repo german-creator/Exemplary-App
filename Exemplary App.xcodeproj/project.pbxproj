@@ -8,15 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		B7F9ACF2D87B38D87F914D44 /* Pods_Exemplary_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3863D75FCB1A5BC69EF20808 /* Pods_Exemplary_App.framework */; };
+		BA0DA637272983E400CEA2D6 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0DA636272983E400CEA2D6 /* Task.swift */; };
+		BA0DA63A27299B4800CEA2D6 /* TaskDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0DA63927299B4800CEA2D6 /* TaskDate.swift */; };
 		BA1277C426EE6300006B4CEF /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1277C326EE6300006B4CEF /* DateFormatter.swift */; };
+		BA28E110272DA301009223BA /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA28E10F272DA300009223BA /* ToggleButton.swift */; };
 		BA3BA4D82711C21B0095E9F9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3BA4D72711C21B0095E9F9 /* Router.swift */; };
 		BA3BA4DB271207720095E9F9 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3BA4DA271207720095E9F9 /* Animator.swift */; };
 		BA3BA4DE271207A60095E9F9 /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3BA4DD271207A60095E9F9 /* Transition.swift */; };
 		BA3BA4E0271207C90095E9F9 /* PushTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3BA4DF271207C90095E9F9 /* PushTransition.swift */; };
 		BA3BA4E2271207DB0095E9F9 /* ModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3BA4E1271207DB0095E9F9 /* ModalTransition.swift */; };
 		BA4154AB27161002003057A9 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4154AA27161002003057A9 /* UIView.swift */; };
-		BA476C2F2709A94500A07DF3 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA476C2E2709A94500A07DF3 /* R.generated.swift */; };
 		BA476C312709B48500A07DF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA476C302709B48500A07DF3 /* Constants.swift */; };
+		BA5A9CFE2737ED8100791BD3 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A9CFD2737ED8000791BD3 /* Calendar.swift */; };
+		BA6881AD272ECF5400BBEB4B /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6881AC272ECF5400BBEB4B /* CalendarHelper.swift */; };
+		BA9618CF2726F4AB00D958A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA9618D12726F4AB00D958A6 /* Localizable.strings */; };
+		BA9618DD27270AFA00D958A6 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9618DC27270AFA00D958A6 /* R.generated.swift */; };
 		BAAF5A4B26DBABCD001A2545 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A4A26DBABCD001A2545 /* AppDelegate.swift */; };
 		BAAF5A4D26DBABCD001A2545 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A4C26DBABCD001A2545 /* SceneDelegate.swift */; };
 		BAAF5A5426DBABD1001A2545 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAAF5A5326DBABD1001A2545 /* Assets.xcassets */; };
@@ -30,7 +36,8 @@
 		BAAF5A7D26DBB36F001A2545 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A7C26DBB36F001A2545 /* MainViewController.swift */; };
 		BAAF5A7F26DBB381001A2545 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A7E26DBB381001A2545 /* MainRouter.swift */; };
 		BAAF5A8726DBF229001A2545 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A8626DBF229001A2545 /* TaskTableViewCell.swift */; };
-		BAB513E7271C7B4B00F689B1 /* CreateTaskToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB513E6271C7B4B00F689B1 /* CreateTaskToolbarView.swift */; };
+		BAB4D10D27281E0E0047676F /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB4D10C27281E0E0047676F /* InputTextView.swift */; };
+		BACC2B48273439DA001C3A46 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACC2B47273439DA001C3A46 /* Date.swift */; };
 		BAE03D53271DB2B800F07F9D /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE03D52271DB2B800F07F9D /* CreateTaskViewController.swift */; };
 		BAE03D55271DB2C900F07F9D /* CreateTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE03D54271DB2C900F07F9D /* CreateTaskPresenter.swift */; };
 		BAE03D57271DB2D900F07F9D /* CreateTaskRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE03D56271DB2D900F07F9D /* CreateTaskRouter.swift */; };
@@ -39,19 +46,32 @@
 		BAE03D62271DB86800F07F9D /* BottomContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE03D61271DB86800F07F9D /* BottomContainerViewController.swift */; };
 		BAE03D64271DBB6300F07F9D /* BottomContainerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE03D63271DBB6300F07F9D /* BottomContainerModule.swift */; };
 		BAE03D66271DBBAF00F07F9D /* BottomContainerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE03D65271DBBAF00F07F9D /* BottomContainerPresenter.swift */; };
+		BAE8B30D272EBC3D00B73726 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE8B30C272EBC3D00B73726 /* CalendarView.swift */; };
+		BAE8B30F272EC88300B73726 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE8B30E272EC88300B73726 /* CalendarCollectionViewCell.swift */; };
+		BAE92665272A98EE00CDAE4D /* SelectDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE92661272A98EE00CDAE4D /* SelectDateViewController.swift */; };
+		BAE92666272A98EE00CDAE4D /* SelectDateModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE92662272A98EE00CDAE4D /* SelectDateModule.swift */; };
+		BAE92667272A98EE00CDAE4D /* SelectDatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE92663272A98EE00CDAE4D /* SelectDatePresenter.swift */; };
+		BAE92668272A98EE00CDAE4D /* SelectDateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE92664272A98EE00CDAE4D /* SelectDateRouter.swift */; };
+		BAE9266F272AA2B400CDAE4D /* TwoButtonBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9266E272AA2B400CDAE4D /* TwoButtonBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3863D75FCB1A5BC69EF20808 /* Pods_Exemplary_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Exemplary_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA0DA636272983E400CEA2D6 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		BA0DA63927299B4800CEA2D6 /* TaskDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDate.swift; sourceTree = "<group>"; };
 		BA1277C326EE6300006B4CEF /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		BA28E10F272DA300009223BA /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		BA3BA4D72711C21B0095E9F9 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		BA3BA4DA271207720095E9F9 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		BA3BA4DD271207A60095E9F9 /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
 		BA3BA4DF271207C90095E9F9 /* PushTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTransition.swift; sourceTree = "<group>"; };
 		BA3BA4E1271207DB0095E9F9 /* ModalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransition.swift; sourceTree = "<group>"; };
 		BA4154AA27161002003057A9 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
-		BA476C2E2709A94500A07DF3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		BA476C302709B48500A07DF3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BA5A9CFD2737ED8000791BD3 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		BA6881AC272ECF5400BBEB4B /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		BA9618D02726F4AB00D958A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BA9618DC27270AFA00D958A6 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		BAAF5A4726DBABCD001A2545 /* Exemplary App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exemplary App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAAF5A4A26DBABCD001A2545 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAAF5A4C26DBABCD001A2545 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,7 +87,8 @@
 		BAAF5A7C26DBB36F001A2545 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BAAF5A7E26DBB381001A2545 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		BAAF5A8626DBF229001A2545 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
-		BAB513E6271C7B4B00F689B1 /* CreateTaskToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskToolbarView.swift; sourceTree = "<group>"; };
+		BAB4D10C27281E0E0047676F /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		BACC2B47273439DA001C3A46 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		BAE03D52271DB2B800F07F9D /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		BAE03D54271DB2C900F07F9D /* CreateTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateTaskPresenter.swift; path = "Exemplary App/Modules/CreateTask/View/CreateTaskPresenter.swift"; sourceTree = SOURCE_ROOT; };
 		BAE03D56271DB2D900F07F9D /* CreateTaskRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskRouter.swift; sourceTree = "<group>"; };
@@ -76,6 +97,13 @@
 		BAE03D61271DB86800F07F9D /* BottomContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomContainerViewController.swift; sourceTree = "<group>"; };
 		BAE03D63271DBB6300F07F9D /* BottomContainerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomContainerModule.swift; sourceTree = "<group>"; };
 		BAE03D65271DBBAF00F07F9D /* BottomContainerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomContainerPresenter.swift; sourceTree = "<group>"; };
+		BAE8B30C272EBC3D00B73726 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		BAE8B30E272EC88300B73726 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		BAE92661272A98EE00CDAE4D /* SelectDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateViewController.swift; sourceTree = "<group>"; };
+		BAE92662272A98EE00CDAE4D /* SelectDateModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateModule.swift; sourceTree = "<group>"; };
+		BAE92663272A98EE00CDAE4D /* SelectDatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDatePresenter.swift; sourceTree = "<group>"; };
+		BAE92664272A98EE00CDAE4D /* SelectDateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateRouter.swift; sourceTree = "<group>"; };
+		BAE9266E272AA2B400CDAE4D /* TwoButtonBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoButtonBar.swift; sourceTree = "<group>"; };
 		CED41B0247C9B620EB17BDF4 /* Pods-Exemplary App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exemplary App.release.xcconfig"; path = "Target Support Files/Pods-Exemplary App/Pods-Exemplary App.release.xcconfig"; sourceTree = "<group>"; };
 		FE6E4FCC5C1CB9CFADB99874 /* Pods-Exemplary App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exemplary App.debug.xcconfig"; path = "Target Support Files/Pods-Exemplary App/Pods-Exemplary App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,11 +137,33 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BA0DA63827299B3A00CEA2D6 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				BA0DA636272983E400CEA2D6 /* Task.swift */,
+				BA0DA63927299B4800CEA2D6 /* TaskDate.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		BA0DA63D2729B32B00CEA2D6 /* SelectDate */ = {
+			isa = PBXGroup;
+			children = (
+				BAE9266C272A996D00CDAE4D /* Module */,
+				BAE9266B272A996400CDAE4D /* View */,
+				BAE9266A272A995B00CDAE4D /* Presenter */,
+				BAE92669272A995300CDAE4D /* Router */,
+			);
+			path = SelectDate;
+			sourceTree = "<group>";
+		};
 		BA1277C026EE62D4006B4CEF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				BA1277C326EE6300006B4CEF /* DateFormatter.swift */,
 				BA4154AA27161002003057A9 /* UIView.swift */,
+				BACC2B47273439DA001C3A46 /* Date.swift */,
+				BA5A9CFD2737ED8000791BD3 /* Calendar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -182,6 +232,7 @@
 		BAAF5A5F26DBAC0A001A2545 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				BA0DA63827299B3A00CEA2D6 /* Entity */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -189,6 +240,7 @@
 		BAAF5A6026DBAC19001A2545 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				BA0DA63D2729B32B00CEA2D6 /* SelectDate */,
 				BAE03D5A271DB75C00F07F9D /* BottomContainer */,
 				BAE03D4D271DB24C00F07F9D /* CreateTask */,
 				BAAF5A6626DBADE6001A2545 /* Root */,
@@ -202,6 +254,7 @@
 			children = (
 				BA3BA4D92711C8760095E9F9 /* Routing */,
 				BA1277C026EE62D4006B4CEF /* Extensions */,
+				BAAF5A7026DBAE7D001A2545 /* Theme */,
 				BAAF5A7126DBAE85001A2545 /* UI */,
 			);
 			path = Common;
@@ -211,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				BAAF5A5326DBABD1001A2545 /* Assets.xcassets */,
+				BA9618D12726F4AB00D958A6 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -218,7 +272,7 @@
 		BAAF5A6326DBAC39001A2545 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				BA476C2E2709A94500A07DF3 /* R.generated.swift */,
+				BA9618DC27270AFA00D958A6 /* R.generated.swift */,
 				BAAF5A5526DBABD1001A2545 /* LaunchScreen.storyboard */,
 				BA476C302709B48500A07DF3 /* Constants.swift */,
 			);
@@ -281,8 +335,10 @@
 		BAAF5A7126DBAE85001A2545 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				BAE8B30B272EBC0D00B73726 /* CalendarView */,
+				BAE9266D272AA2A000CDAE4D /* TwoButtonBar */,
+				BAB4D10B27281DC40047676F /* TextViews */,
 				BAAF5A8326DBF1DB001A2545 /* Cells */,
-				BAAF5A7026DBAE7D001A2545 /* Theme */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -327,6 +383,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		BAB4D10B27281DC40047676F /* TextViews */ = {
+			isa = PBXGroup;
+			children = (
+				BAB4D10C27281E0E0047676F /* InputTextView.swift */,
+			);
+			path = TextViews;
+			sourceTree = "<group>";
+		};
 		BAE03D4D271DB24C00F07F9D /* CreateTask */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,7 +421,6 @@
 		BAE03D50271DB27800F07F9D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BAB513E6271C7B4B00F689B1 /* CreateTaskToolbarView.swift */,
 				BAE03D52271DB2B800F07F9D /* CreateTaskViewController.swift */,
 			);
 			path = View;
@@ -414,6 +477,57 @@
 			path = Module;
 			sourceTree = "<group>";
 		};
+		BAE8B30B272EBC0D00B73726 /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				BAE8B30C272EBC3D00B73726 /* CalendarView.swift */,
+				BAE8B30E272EC88300B73726 /* CalendarCollectionViewCell.swift */,
+				BA6881AC272ECF5400BBEB4B /* CalendarHelper.swift */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		BAE92669272A995300CDAE4D /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				BAE92664272A98EE00CDAE4D /* SelectDateRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		BAE9266A272A995B00CDAE4D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BAE92663272A98EE00CDAE4D /* SelectDatePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BAE9266B272A996400CDAE4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BAE92661272A98EE00CDAE4D /* SelectDateViewController.swift */,
+				BA28E10F272DA300009223BA /* ToggleButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BAE9266C272A996D00CDAE4D /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				BAE92662272A98EE00CDAE4D /* SelectDateModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		BAE9266D272AA2A000CDAE4D /* TwoButtonBar */ = {
+			isa = PBXGroup;
+			children = (
+				BAE9266E272AA2B400CDAE4D /* TwoButtonBar.swift */,
+			);
+			path = TwoButtonBar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -422,11 +536,11 @@
 			buildConfigurationList = BAAF5A5B26DBABD1001A2545 /* Build configuration list for PBXNativeTarget "Exemplary App" */;
 			buildPhases = (
 				33645C2C0DD41E17CCABC4FE /* [CP] Check Pods Manifest.lock */,
+				BA9618DB27270A4500D958A6 /* R.swift */,
 				BAAF5A4326DBABCD001A2545 /* Sources */,
 				BAAF5A4426DBABCD001A2545 /* Frameworks */,
 				BAAF5A4526DBABCD001A2545 /* Resources */,
 				3C4F9CD414CF18CD2E6A944C /* [CP] Embed Pods Frameworks */,
-				BA476C2D2709A57400A07DF3 /* RSwift */,
 			);
 			buildRules = (
 			);
@@ -475,6 +589,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAAF5A5726DBABD1001A2545 /* LaunchScreen.storyboard in Resources */,
+				BA9618CF2726F4AB00D958A6 /* Localizable.strings in Resources */,
 				BAAF5A5426DBABD1001A2545 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,7 +636,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Exemplary App/Pods-Exemplary App-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BA476C2D2709A57400A07DF3 /* RSwift */ = {
+		BA9618DB27270A4500D958A6 /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -531,15 +646,15 @@
 			inputPaths = (
 				"$TEMP_DIR/rswift-lastrun",
 			);
-			name = RSwift;
+			name = R.swift;
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/${PROJECT_NAME}/SupportingFiles/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/${PROJECT_NAME}/SupportingFiles/R.generated.swift\"\n";
+			shellScript = "if [ $ACTION != \"indexbuild\" ]; then\n  \"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -551,30 +666,43 @@
 				BA3BA4DE271207A60095E9F9 /* Transition.swift in Sources */,
 				BA3BA4DB271207720095E9F9 /* Animator.swift in Sources */,
 				BA3BA4E0271207C90095E9F9 /* PushTransition.swift in Sources */,
+				BAE92667272A98EE00CDAE4D /* SelectDatePresenter.swift in Sources */,
+				BAE92665272A98EE00CDAE4D /* SelectDateViewController.swift in Sources */,
 				BAAF5A6D26DBAE1F001A2545 /* RootPresenter.swift in Sources */,
 				BAE03D64271DBB6300F07F9D /* BottomContainerModule.swift in Sources */,
 				BAAF5A6B26DBAE14001A2545 /* RootModule.swift in Sources */,
+				BAB4D10D27281E0E0047676F /* InputTextView.swift in Sources */,
 				BAAF5A4B26DBABCD001A2545 /* AppDelegate.swift in Sources */,
+				BAE92666272A98EE00CDAE4D /* SelectDateModule.swift in Sources */,
 				BAAF5A7B26DBB35E001A2545 /* MainPresenter.swift in Sources */,
 				BAE03D57271DB2D900F07F9D /* CreateTaskRouter.swift in Sources */,
+				BA5A9CFE2737ED8100791BD3 /* Calendar.swift in Sources */,
+				BACC2B48273439DA001C3A46 /* Date.swift in Sources */,
 				BA1277C426EE6300006B4CEF /* DateFormatter.swift in Sources */,
 				BAE03D60271DB80500F07F9D /* BottomContainerRouter.swift in Sources */,
+				BAE8B30F272EC88300B73726 /* CalendarCollectionViewCell.swift in Sources */,
+				BA9618DD27270AFA00D958A6 /* R.generated.swift in Sources */,
+				BA0DA637272983E400CEA2D6 /* Task.swift in Sources */,
 				BA3BA4D82711C21B0095E9F9 /* Router.swift in Sources */,
 				BAE03D55271DB2C900F07F9D /* CreateTaskPresenter.swift in Sources */,
+				BAE9266F272AA2B400CDAE4D /* TwoButtonBar.swift in Sources */,
 				BAE03D59271DB2E500F07F9D /* CreateTaskModule.swift in Sources */,
+				BA28E110272DA301009223BA /* ToggleButton.swift in Sources */,
 				BAAF5A6F26DBAE29001A2545 /* RootRouter.swift in Sources */,
 				BAE03D53271DB2B800F07F9D /* CreateTaskViewController.swift in Sources */,
+				BA6881AD272ECF5400BBEB4B /* CalendarHelper.swift in Sources */,
 				BAE03D62271DB86800F07F9D /* BottomContainerViewController.swift in Sources */,
-				BA476C2F2709A94500A07DF3 /* R.generated.swift in Sources */,
 				BAAF5A7F26DBB381001A2545 /* MainRouter.swift in Sources */,
+				BAE92668272A98EE00CDAE4D /* SelectDateRouter.swift in Sources */,
 				BA4154AB27161002003057A9 /* UIView.swift in Sources */,
 				BAE03D66271DBBAF00F07F9D /* BottomContainerPresenter.swift in Sources */,
 				BAAF5A4D26DBABCD001A2545 /* SceneDelegate.swift in Sources */,
-				BAB513E7271C7B4B00F689B1 /* CreateTaskToolbarView.swift in Sources */,
 				BA3BA4E2271207DB0095E9F9 /* ModalTransition.swift in Sources */,
+				BA0DA63A27299B4800CEA2D6 /* TaskDate.swift in Sources */,
 				BAAF5A8726DBF229001A2545 /* TaskTableViewCell.swift in Sources */,
 				BAAF5A7D26DBB36F001A2545 /* MainViewController.swift in Sources */,
 				BA476C312709B48500A07DF3 /* Constants.swift in Sources */,
+				BAE8B30D272EBC3D00B73726 /* CalendarView.swift in Sources */,
 				BAAF5A7926DBB325001A2545 /* MainModule.swift in Sources */,
 				BAAF5A7326DBAE9A001A2545 /* Theme.swift in Sources */,
 			);
@@ -583,6 +711,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		BA9618D12726F4AB00D958A6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA9618D02726F4AB00D958A6 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		BAAF5A5526DBABD1001A2545 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -598,6 +734,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -659,6 +796,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

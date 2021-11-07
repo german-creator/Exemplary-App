@@ -10,7 +10,6 @@ import SnapKit
 
 protocol MainViewInput: AnyObject {
     func reloadData()
-    func showAddTaskAlert()
 }
 
 class MainViewController: UIViewController {
@@ -82,29 +81,5 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: MainViewInput {
     func reloadData() {
         tableView.reloadData()
-    }
-    
-    //TODO: Remove after CreateTaskModule implementation
-    func showAddTaskAlert() {
-        var alertTextField: UITextField?
-        
-        let alert = UIAlertController(
-            title: "Create new Task",
-            message: nil,
-            preferredStyle: .alert)
-        
-        alert.addTextField { textField in
-            textField.placeholder = "Create new Item"
-            alertTextField = textField
-        }
-        
-        alert.addAction(UIAlertAction(title: "Create", style: .default) { _ in
-            guard let text = alertTextField?.text,
-                  !text.isEmpty else { return }
-            self.output.didCreateNewTask(with: text)
-            
-        })
-        
-        present(alert, animated: true, completion: nil)
     }
 }

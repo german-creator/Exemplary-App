@@ -7,7 +7,20 @@
 
 import Foundation
 
+protocol CreateTaskModuleOutput: AnyObject {
+    func didCreateTask(_ task: Task)
+}
+
 class CreateTaskModule {
+    
+    var output: CreateTaskModuleOutput? {
+        get {
+            return presenter.output
+        }
+        set {
+            presenter.output = newValue
+        }
+    }
     
     let router: CreateTaskRouter
     let viewController: CreateTaskViewController

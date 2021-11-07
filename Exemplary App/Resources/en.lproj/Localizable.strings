@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  Exemplary App
+
+  Created by Герман Иванилов on 25/10/2021.
+*/
+
+"common.ok" = "Ok";
+"common.cancel" = "Cancel";
+"common.create" = "Create";
+"common.today" = "Today";
+"common.yesterday" = "Yesterday";
+"common.tomorrow" = "Tomorrow";
+"common.date" = "Date";
+"common.noDate" = "No Date";
+"common.save" = "Save";
+"common.remove" = "Remove";
+
+"createTask.title.placeholder" = "Task Name";
+"createTask.desctiption.placeholder" = "Description";
+
+"selectDate.buttonTitle.addTime" = "Add Time";
+
+

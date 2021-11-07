@@ -8,20 +8,22 @@
 import Foundation
 
 protocol CreateTaskRoute: BottomContainerRoute {
-    func openCreateTaskModule(animated: Bool)
+    func openCreateTaskModule(output: CreateTaskModuleOutput)
 }
 
 extension CreateTaskRoute where Self: RouterProtocol {
-    func openCreateTaskModule(animated: Bool) {
+    func openCreateTaskModule(output: CreateTaskModuleOutput) {
         let container = getBottomContainer()
         
         let result = container { transaction in
-            CreateTaskModule(transition: transaction).viewController
+            let createTaskModule = CreateTaskModule(transition: transaction)
+            createTaskModule.output = output
+            return createTaskModule.viewController
         }
         open(result.viewController, transition: result.transition)
     }
 }
 
 class CreateTaskRouter: Router<CreateTaskViewController>, CreateTaskRouter.Routes {
-    typealias Routes = Closable
+    typealias Routes = Closable & SelectDateRoute & BottomContainerRoute
 }

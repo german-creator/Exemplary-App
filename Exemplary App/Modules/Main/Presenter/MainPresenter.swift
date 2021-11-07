@@ -9,10 +9,9 @@ import Foundation
 
 protocol MainViewOutput {
     func didTapAddButton()
-    func didCreateNewTask(with title: String)
     func numberOfSections() -> Int
     func numberOfViewModels(in section: Int) -> Int
-    func viewModel(at indexPath: IndexPath) -> TaskViewModel
+    func viewModel(at indexPath: IndexPath) -> Task
 }
 
 class MainPresenter {
@@ -20,9 +19,9 @@ class MainPresenter {
     
     private let router: MainRouter.Routes
     
-    private var tasksArray: [TaskViewModel] = [
-        .init(status: .base, title: "First item", date: Date(), addInfo: false),
-        .init(status: .overdue, title: "Second item", date: Date(), addInfo: true)
+    private var tasksArray: [Task] = [
+        .init(title: "Work", description: nil, date: .init(), status: .base),
+        .init(title: "Eat", description: nil, date: .init(), status: .overdue)
         
     ]
     
@@ -33,17 +32,7 @@ class MainPresenter {
 
 extension MainPresenter: MainViewOutput {
     func didTapAddButton() {
-        router.openCreateTaskModule(animated: true)
-    }
-    
-    func didCreateNewTask(with title: String) {
-        tasksArray.insert(TaskViewModel(
-            status: .base,
-            title: title,
-            date: Date(),
-            addInfo: false),
-                          at: 0)
-        view?.reloadData()
+        router.openCreateTaskModule(output: self)
     }
     
     func numberOfSections() -> Int {
@@ -54,7 +43,14 @@ extension MainPresenter: MainViewOutput {
         tasksArray.count
     }
     
-    func viewModel(at indexPath: IndexPath) -> TaskViewModel {
+    func viewModel(at indexPath: IndexPath) -> Task {
         return tasksArray[indexPath.row]
+    }
+}
+
+extension MainPresenter: CreateTaskModuleOutput {
+    func didCreateTask(_ task: Task) {
+        tasksArray.append(task)
+        view?.reloadData()
     }
 }

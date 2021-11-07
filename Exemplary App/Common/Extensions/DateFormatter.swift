@@ -8,9 +8,16 @@
 import Foundation
 
 extension DateFormatter {
-    static let displayDayFormatter: DateFormatter = {
+    static let displayTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
+        formatter.locale = Locale(identifier: "ru_RU")
+        return formatter
+    }()
+    
+    static let displayDayFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM"
         formatter.locale = Locale(identifier: "ru_RU")
         return formatter
     }()

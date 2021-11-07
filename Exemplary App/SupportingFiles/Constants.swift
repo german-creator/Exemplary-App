@@ -8,7 +8,9 @@
 import UIKit
 
 enum Constants {
-    static let mediumMargin: CGFloat = 16
-    static let smallMargin: CGFloat = 8
-    static let largeMargin: CGFloat = 20
+    static let mediumMargin: CGFloat = 20
+    static let smallMargin: CGFloat = 10
+    static let largeMargin: CGFloat = 30
+    
+    static let buttonCornerRadius: CGFloat = 12
 }
