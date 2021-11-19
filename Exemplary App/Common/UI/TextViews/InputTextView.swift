@@ -15,6 +15,26 @@ class InputTextView: UITextView {
         }
     }
     
+    override var text: String? {
+        get {
+            super.text
+        }
+        set {
+            super.text = newValue
+            updatePlaceholderText()
+        }
+    }
+    
+    override var attributedText: NSAttributedString! {
+        get {
+            return super.attributedText
+        }
+        set {
+            super.attributedText = newValue
+            updatePlaceholderText()
+        }
+    }
+    
     private (set) var placeholderLabel = UILabel()
         
     override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -55,6 +75,6 @@ class InputTextView: UITextView {
     }
     
     @objc private func updatePlaceholderText() {
-        placeholderLabel.styledText = text == "" ? placeholder : nil
+        placeholderLabel.styledText = text?.isEmpty ?? true ? placeholder : nil
     }
 }

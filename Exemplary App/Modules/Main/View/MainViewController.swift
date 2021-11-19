@@ -16,10 +16,22 @@ class MainViewController: UIViewController {
     
     var output: MainViewOutput!
     
-    private let tableView = UITableView()
+    private let taskTableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupViews()
+        setupLayout()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        output.viewDidDisappear()
+    }
+    
+    private func setupViews() {
+        view.backgroundColor = Theme.currentTheme.color.white
         
         navigationItem.title = "Today"
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -28,26 +40,21 @@ class MainViewController: UIViewController {
             action: #selector(didTapAddButton))
         navigationItem.rightBarButtonItem?.tintColor = Theme.currentTheme.color.mainAccent
         
-        tableView.register(TaskTableViewCell.self, forCellReuseIdentifier: TaskTableViewCell.reuseIdentifier)
-        tableView.rowHeight = TaskTableViewCell.height
-        tableView.estimatedRowHeight = TaskTableViewCell.estimatedHeight
-        tableView.showsVerticalScrollIndicator = false
-        tableView.alwaysBounceVertical = true
-        tableView.allowsSelection = false
-        tableView.dataSource = self
+        taskTableView.register(TaskTableViewCell.self, forCellReuseIdentifier: TaskTableViewCell.reuseIdentifier)
+        taskTableView.rowHeight = TaskTableViewCell.height
+        taskTableView.estimatedRowHeight = TaskTableViewCell.estimatedHeight
+        taskTableView.showsVerticalScrollIndicator = false
+        taskTableView.alwaysBounceVertical = true
+        taskTableView.dataSource = self
+        taskTableView.delegate = self
         
-        setupViews()
-        setupLayout()
-    }
-    
-    private func setupViews() {
-        view.backgroundColor = Theme.currentTheme.color.white
-        view.addSubview(tableView)
-        
+        output.viewIsReady()
     }
     
     private func setupLayout() {
-        tableView.snp.makeConstraints { make in
+        view.addSubview(taskTableView)
+
+        taskTableView.snp.makeConstraints { make in
             make.top.bottom.equalTo(view)
             make.leading.equalTo(view)
             make.trailing.equalTo(view)
@@ -78,8 +85,39 @@ extension MainViewController: UITableViewDataSource {
     }
 }
 
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        let action = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, _ in
+            self?.output.didTapDeleteCell(at: indexPath)
+        }
+        
+        action.image = R.image.button_delete()?.withSize(width: 30, height: 30)
+        action.backgroundColor = Theme.currentTheme.color.secondRedLight
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, _ in
+            self?.output.didTapDoneCell(at: indexPath)
+        }
+        
+        action.image = R.image.button_check()?.withSize(width: 30, height: 30)
+        action.backgroundColor = Theme.currentTheme.color.mainAccentLight
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        output.didTapCell(at: indexPath)
+    }
+}
+
 extension MainViewController: MainViewInput {
     func reloadData() {
-        tableView.reloadData()
+        taskTableView.reloadData()
     }
 }

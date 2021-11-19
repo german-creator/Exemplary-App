@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ToggleButton: UIButton {
+class ActiveButton: UIButton {
     
-    var isChosen: Bool = false {
+    var isActive: Bool = false {
         didSet {
             updateColor()
         }
@@ -37,7 +37,7 @@ class ToggleButton: UIButton {
     }
     
     private func updateColor() {
-        if isChosen {
+        if isActive {
             layer.borderWidth = 0
             setTitleColor(Theme.currentTheme.color.white, for: .normal)
             backgroundColor = Theme.currentTheme.color.mainAccent

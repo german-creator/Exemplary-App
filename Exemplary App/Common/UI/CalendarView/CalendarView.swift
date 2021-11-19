@@ -13,12 +13,16 @@ protocol CelendarViewDelegate {
 
 class CalendarView: UIView {
     
-    let headerView = UIView()
-    let monthLabel = UILabel()
-    let buttonsStackView = UIStackView()
-    let nextMonthButton = UIButton(type: .system)
-    let previousMonthButton = UIButton(type: .system)
-    var collectionView: UICollectionView!
+    private let headerView = UIView()
+    private let monthLabel = UILabel()
+    private let buttonsStackView = UIStackView()
+    private let nextMonthButton = UIButton(type: .system)
+    private let previousMonthButton = UIButton(type: .system)
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return collectionView
+    }()
     
     var selectedDay: Date? {
         didSet {
@@ -44,9 +48,12 @@ class CalendarView: UIView {
     }
     
     private func initSetup() {
-        let flowLayout = UICollectionViewFlowLayout()
-        collectionView = .init(frame: .zero, collectionViewLayout: flowLayout)
-        
+        setupViews()
+        setupLayout()
+        setMonthView()
+    }
+    
+    private func setupViews() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(
@@ -68,9 +75,6 @@ class CalendarView: UIView {
         
         nextMonthButton.setBackgroundImage(R.image.button_right(), for: .normal)
         previousMonthButton.setBackgroundImage(R.image.button_left(), for: .normal)
-        
-        setupLayout()
-        setMonthView()
     }
     
     private func setupLayout() {
@@ -125,7 +129,8 @@ class CalendarView: UIView {
     }
     
     private func updateSelectedDate() {
-        if let selectedDay = selectedDay, !Calendar.current.isDate(selectedDay, inSameMonthAs: currentMonth) {
+        if let selectedDay = selectedDay,
+           !Calendar.current.isDate(selectedDay, inSameMonthAs: currentMonth) {
             scrollToSelectedDate()
         } else {
             collectionView.reloadData()
@@ -154,16 +159,16 @@ class CalendarView: UIView {
         var day = calendarHelper.firstOfMonth(date: currentMonth)
         let startingSpaces = calendarHelper.weekDay(date: day)
         
-        var count: Int = 0
+        var index = 0
         
-        while(count < calendarItemsCount) {
-            if(count < startingSpaces || count - startingSpaces >= daysInMonth) {
+        while(index < calendarItemsCount) {
+            if(index < startingSpaces || index - startingSpaces >= daysInMonth) {
                 daysArray.append(nil)
             } else {
                 daysArray.append(day)
                 day = calendarHelper.addDays(date: day, days: 1)
             }
-            count += 1
+            index += 1
         }
     }
 }
@@ -195,7 +200,7 @@ extension CalendarView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width/8 - 2, height: 25)
+        return CGSize(width: collectionView.frame.width/8 - 5, height: 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

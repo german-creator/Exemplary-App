@@ -17,7 +17,8 @@ class MainModule {
     init() {
         let viewController = MainViewController()
         let router = MainRouter()
-        let presenter = MainPresenter(router: router)
+        let service = UserDefaultsServise()
+        let presenter = MainPresenter(router: router, service: service)
         
         viewController.output = presenter
         presenter.view = viewController

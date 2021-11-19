@@ -31,12 +31,10 @@ class TaskTableViewCell: UITableViewCell {
     private let statusView = UIView()
     private let stackView = UIStackView()
     private let titleLabel = UILabel()
+    private let descriptionLabel = UILabel()
     private let dateLabel = UILabel()
-    private let rightImageView = UIImageView()
     
     private let statusViewSize = CGFloat(38)
-    private let rightImageViewSize = CGFloat(18)
-    
     
     var viewModel:Task? {
         didSet {
@@ -56,25 +54,31 @@ class TaskTableViewCell: UITableViewCell {
     }
     
     private func setupViews() {
+        
+        selectionStyle = .none
+        
         statusView.layer.cornerRadius = statusViewSize / 2
         
         titleLabel.bonMotStyle = Theme.currentTheme.stringStyle.h2_17_r.byAdding(
             .color(Theme.currentTheme.color.black)
         )
         
-        rightImageView.image = R.image.chevron_right()
-        rightImageView.contentMode = .scaleAspectFit
+        descriptionLabel.bonMotStyle = Theme.currentTheme.stringStyle.h3_15_r.byAdding(
+            .color(Theme.currentTheme.color.grey)
+        )
         
         stackView.axis = .vertical
+  
+    }
+    
+    private func setupLayout() {
         stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(descriptionLabel)
         stackView.addArrangedSubview(dateLabel)
         
         addSubview(statusView)
         addSubview(stackView)
-        addSubview(rightImageView)
-    }
-    
-    private func setupLayout() {
+        
         statusView.snp.makeConstraints { make in
             make.width.height.equalTo(statusViewSize)
             make.centerY.equalToSuperview()
@@ -85,13 +89,7 @@ class TaskTableViewCell: UITableViewCell {
             make.top.equalToSuperview().offset(Constants.mediumMargin)
             make.bottom.equalToSuperview().offset(-Constants.mediumMargin)
             make.leading.equalTo(statusView.snp.trailing).offset(Constants.smallMargin)
-            make.trailing.lessThanOrEqualTo(rightImageView).offset(Constants.mediumMargin)
-        }
-        
-        rightImageView.snp.makeConstraints { make in
-            make.width.height.equalTo(rightImageViewSize)
-            make.centerY.equalToSuperview()
-            make.trailing.equalTo(self.snp.trailing).offset(Constants.mediumMargin)
+            make.trailing.lessThanOrEqualToSuperview().offset(-Constants.mediumMargin)
         }
     }
     
@@ -117,9 +115,7 @@ class TaskTableViewCell: UITableViewCell {
         }
         
         titleLabel.styledText = viewModel?.title
-        
-        if let date = viewModel?.date?.date {
-            dateLabel.styledText = DateFormatter.displayDayFormatter.string(from: date)
-        }
+        descriptionLabel.styledText = viewModel?.description
+        dateLabel.styledText = viewModel?.date?.displayFormate
     }
 }

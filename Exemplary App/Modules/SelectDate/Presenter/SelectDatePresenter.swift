@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias TaskDateHandler = (TaskDate) -> Void
+typealias TaskDateHandler = (TaskDate?) -> Void
 
 struct SelectDateModuleConfig {
     var taskDate: TaskDate?
@@ -33,90 +33,91 @@ class SelectDatePresenter {
     private let router: SelectDateRouter.Routes
     
     private var config: SelectDateModuleConfig
-    private var date: Date?
-    private var time: Date?
-    
+    private var taskDate: TaskDate
+
     init(router: SelectDateRouter.Routes, config: SelectDateModuleConfig) {
         self.router = router
         self.config = config
-        self.date = config.taskDate?.date
-        self.time = (config.taskDate?.withTime ?? false) ? config.taskDate?.date : nil
+        self.taskDate = config.taskDate ?? TaskDate(day: Date(), time: nil)
     }
     
-    private func updateDateButtons() {
-        guard let date = date else {
-            date = Date()
-            view?.setDateButtonChosen(.today)
-            return
+    private func updateTimeButtonTitle() {
+        if let time = taskDate.time {
+            view?.setTimeButtonTitle(with: DateFormatter.displayTimeFormatter.string(from: time))
+        } else  {
+            view?.setTimeButtonTitle(with: R.string.localizable.selectDateButtonTitleAddTime())
         }
-        if Calendar.current.isDateInToday(date) {
-            view?.setDateButtonChosen(.today)
-        } else if Calendar.current.isDateInTomorrow(date) {
-            view?.setDateButtonChosen(.tomorrow)
+    }
+    
+    private func updateActiveButtons() {
+        var activeButton: ActiveDateButton
+        if let day = taskDate.day {
+            if Calendar.current.isDateInToday(day) {
+                activeButton = .today
+            } else if Calendar.current.isDateInTomorrow(day) {
+                activeButton = .tomorrow
+            } else {
+                activeButton = .noActive
+            }
         } else {
-            view?.setDateButtonChosen(.other)
+            activeButton = .noDate
         }
+        view?.setActiveDateButton(activeButton)
     }
 }
 
 extension SelectDatePresenter: SelectDateViewOutput {
     func viewIsReady() {
-        view?.setCalendarDate(date)
-        updateDateButtons()
+        view?.setCalendarDate(taskDate.day)
+        updateTimeButtonTitle()
+        updateActiveButtons()
     }
     
     func didTapTime() {
-        view?.showTimePicker(withRemoveButton: time != nil ? true : false)
+        view?.showTimePicker(time: taskDate.time ?? Date())
     }
     
     func didTapSave() {
-        var newTaskDate = TaskDate(date: date, withTime: false)
-    
-        if let time = time, let date = date {
-            newTaskDate.withTime = true
-            let hour = Calendar.current.component(.hour, from: time)
-            let minuter = Calendar.current.component(.minute, from: time)
-            newTaskDate.date = Calendar.current.date(
-                bySettingHour: hour, minute: minuter, second: 0, of: date)!
+        if taskDate.day != nil || taskDate.time != nil {
+            config.updateTime(taskDate)
+        } else {
+            config.updateTime(nil)
         }
-    
-        config.updateTime(newTaskDate)
         router.close()
     }
     
     func didTapToday() {
-        let newDate = Date()
-        date = newDate
-        view?.setCalendarDate(newDate)
-        view?.setDateButtonChosen(.today)
+        let today = Date()
+        taskDate.day = today
+        view?.setCalendarDate(today)
+        updateActiveButtons()
     }
     
     func didTapTomorrow() {
         let tomorrow = Date.tomorrow
-        date = tomorrow
+        taskDate.day = tomorrow
         view?.setCalendarDate(tomorrow)
-        view?.setDateButtonChosen(.tomorrow)
+        updateActiveButtons()
     }
     
     func didTapNoDate() {
-        date = nil
+        taskDate.day = nil
         view?.setCalendarDate(nil)
-        view?.setDateButtonChosen(.noDate)
+        updateActiveButtons()
     }
     
     func didChangeDay(newDay: Date) {
-        date = newDay
-        updateDateButtons()
+        taskDate.day = newDay
+        updateActiveButtons()
     }
     
     func didChangeTime(newTime: Date) {
-        time = newTime
-        let timeDisplayFormat = DateFormatter.displayTimeFormatter.string(from: newTime)
-        view?.setTimeButtonTitle(with: timeDisplayFormat)
+        taskDate.time = newTime
+        updateTimeButtonTitle()
     }
     
     func didRemoveTime() {
-        time = nil
-        view?.setTimeButtonTitle(with: nil)
+        taskDate.time = nil
+        updateTimeButtonTitle()
     }
 }

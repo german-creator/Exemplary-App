@@ -16,8 +16,9 @@
 "common.save" = "Save";
 "common.remove" = "Remove";
 
-"createTask.title.placeholder" = "Task Name";
-"createTask.desctiption.placeholder" = "Description";
+"task.title.placeholder" = "Task Name";
+"task.desctiption.placeholder" = "Description";
+"task.button.title.selectDate" = "Select Date";
 
 "selectDate.buttonTitle.addTime" = "Add Time";
 

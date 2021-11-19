@@ -1,5 +1,5 @@
 //
-//  CreateTaskViewController.swift
+//  TaskViewController.swift
 //  Exemplary App
 //
 //  Created by Герман Иванилов on 18.10.2021.
@@ -7,13 +7,15 @@
 
 import UIKit
 
-protocol CreateTaskInput: AnyObject {
-    func setTimeButtonTitle(with text: String)
+protocol TaskInput: AnyObject {
+    func setTask(task: Task?)
+    func setDateButtonTitle(with text: String?)
+    func setSaveButtonTitle(with text: String?)
 }
 
-class CreateTaskViewController: UIViewController {
+class TaskViewController: UIViewController {
     
-    var output: CreateTaskOutput!
+    var output: TaskOutput!
     
     var titleTextField = UITextField()
     var descriptionTextView = InputTextView()
@@ -25,7 +27,27 @@ class CreateTaskViewController: UIViewController {
         setupViews()
         setupLayout()
         
-        descriptionTextView.delegate = self
+        output.viewIsReady()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        titleTextField.becomeFirstResponder()
+    }
+    
+    private func setupViews(){
+        view.backgroundColor = Theme.currentTheme.color.white
+        view.layer.cornerRadius = 20
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        titleTextField.bonMotStyle = Theme.currentTheme.stringStyle.h2_17_r.byAdding(
+            .color(Theme.currentTheme.color.black)
+        )
+        
+        titleTextField.attributedPlaceholder =  NSAttributedString(
+            string: R.string.localizable.taskTitlePlaceholder(),
+            attributes: [NSAttributedString.Key.foregroundColor: Theme.currentTheme.color.grey]
+        )
         
         titleTextField.addTarget(
             self,
@@ -38,40 +60,17 @@ class CreateTaskViewController: UIViewController {
             name: UIResponder.keyboardWillShowNotification,
             object: nil)
         
-        toolbar.rightButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        toolbar.leftButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        
-        output.viewIsReady()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        titleTextField.becomeFirstResponder()
-    }
-    
-    private func setupViews(){
-        view.backgroundColor = Theme.currentTheme.color.white
-        
-        view.layer.cornerRadius = 20
-        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
-        titleTextField.bonMotStyle = Theme.currentTheme.stringStyle.h2_17_r.byAdding(
-            .color(Theme.currentTheme.color.black)
-        )
-        
-        titleTextField.attributedPlaceholder =  NSAttributedString(
-            string: R.string.localizable.createTaskTitlePlaceholder(),
-            attributes: [NSAttributedString.Key.foregroundColor: Theme.currentTheme.color.grey]
-        )
-        
+        descriptionTextView.delegate = self
         descriptionTextView.isScrollEnabled = false
         descriptionTextView.bonMotStyle =  Theme.currentTheme.stringStyle.h3_15_r.byAdding(
             .color(Theme.currentTheme.color.black)
         )
-        descriptionTextView.placeholder = R.string.localizable.createTaskDesctiptionPlaceholder()
+        descriptionTextView.placeholder = R.string.localizable.taskDesctiptionPlaceholder()
         
         toolbar.rightButton.styledText = R.string.localizable.commonCreate()
         toolbar.leftButton.styledText = R.string.localizable.commonDate()
+        toolbar.rightButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        toolbar.leftButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
     
     private func setupLayout() {
@@ -102,7 +101,7 @@ class CreateTaskViewController: UIViewController {
         case toolbar.leftButton:
             output.didTapDateButton()
         case toolbar.rightButton:
-            output.didTapCreateButton()
+            output.didTapSaveButton()
         default: break
         }
     }
@@ -121,14 +120,23 @@ class CreateTaskViewController: UIViewController {
     }
 }
 
-extension CreateTaskViewController: CreateTaskInput {
-    func setTimeButtonTitle(with text: String) {
+extension TaskViewController: TaskInput {
+    func setTask(task: Task?) {
+        titleTextField.styledText = task?.title
+        descriptionTextView.styledText = task?.description
+    }
+    
+    func setDateButtonTitle(with text: String?) {
         toolbar.leftButton.styledText = text
     }
+    
+    func setSaveButtonTitle(with text: String?) {
+        toolbar.rightButton.styledText = text
+    }
+
 }
 
-
-extension CreateTaskViewController: UITextViewDelegate {
+extension TaskViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         guard textView == descriptionTextView else { return }
         output.didChaneDescription(textView.text)

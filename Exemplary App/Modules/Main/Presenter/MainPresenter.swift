@@ -8,7 +8,12 @@
 import Foundation
 
 protocol MainViewOutput {
+    func viewIsReady()
+    func viewDidDisappear()
     func didTapAddButton()
+    func didTapCell(at indexPath: IndexPath)
+    func didTapDeleteCell(at indexPath: IndexPath)
+    func didTapDoneCell(at indexPath: IndexPath)
     func numberOfSections() -> Int
     func numberOfViewModels(in section: Int) -> Int
     func viewModel(at indexPath: IndexPath) -> Task
@@ -18,21 +23,42 @@ class MainPresenter {
     weak var view: MainViewInput?
     
     private let router: MainRouter.Routes
+    private let service: UserDefaultsServise
     
-    private var tasksArray: [Task] = [
-        .init(title: "Work", description: nil, date: .init(), status: .base),
-        .init(title: "Eat", description: nil, date: .init(), status: .overdue)
-        
-    ]
+    private var taskList: [Task] = []
     
-    init(router: MainRouter.Routes) {
+    init(router: MainRouter.Routes, service: UserDefaultsServise) {
         self.router = router
+        self.service = service
     }
 }
 
 extension MainPresenter: MainViewOutput {
+    func viewIsReady() {
+        taskList = service.taskList
+        view?.reloadData()
+    }
+    
+    func viewDidDisappear() {
+        service.taskList = taskList
+    }
+    
     func didTapAddButton() {
-        router.openCreateTaskModule(output: self)
+        router.openCreateTaskModule(config: .init(mode: .create, output: self))
+    }
+    
+    func didTapCell(at indexPath: IndexPath) {
+        router.openCreateTaskModule(config: .init(mode: .edit(task: taskList[indexPath.row]), output: self))
+    }
+
+    
+    func didTapDeleteCell(at indexPath: IndexPath) {
+        
+    }
+
+    func didTapDoneCell(at indexPath: IndexPath) {
+        taskList.remove(at: indexPath.row)
+        view?.reloadData()
     }
     
     func numberOfSections() -> Int {
@@ -40,17 +66,24 @@ extension MainPresenter: MainViewOutput {
     }
     
     func numberOfViewModels(in section: Int) -> Int {
-        tasksArray.count
+        taskList.count
     }
     
     func viewModel(at indexPath: IndexPath) -> Task {
-        return tasksArray[indexPath.row]
+        return taskList[indexPath.row]
     }
 }
 
-extension MainPresenter: CreateTaskModuleOutput {
+extension MainPresenter: TaskModuleOutput {
     func didCreateTask(_ task: Task) {
-        tasksArray.append(task)
+        taskList.append(task)
         view?.reloadData()
+    }
+    
+    func didEditTask(_ task: Task) {
+        if let index = taskList.firstIndex(where: { $0.id == task.id }) {
+            taskList[index] = task
+            view?.reloadData()
+        }
     }
 }

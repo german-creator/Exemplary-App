@@ -15,25 +15,22 @@ class TwoButtonBar: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupViews()
-        setupLayout()
+        initSetup()
     }
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
+        
+        initSetup()
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    private func initSetup() {
         setupViews()
         setupLayout()
     }
     
     private func setupViews() {
         backgroundColor = Theme.currentTheme.color.white
-        
-        addArrangedSubview(leftButton)
-        addArrangedSubview(rightButton)
         
         spacing = 40
         axis = .horizontal
@@ -61,6 +58,9 @@ class TwoButtonBar: UIStackView {
     }
     
     private func setupLayout() {
+        addArrangedSubview(leftButton)
+        addArrangedSubview(rightButton)
+        
         snp.makeConstraints { make in
             make.height.equalTo(60)
         }

@@ -8,15 +8,15 @@
 import UIKit
 import SnapKit
 
-enum DateButtonChosen {
-    case today, tomorrow, noDate, other
+enum ActiveDateButton {
+    case today, tomorrow, noDate, noActive
 }
 
 protocol SelectDateViewInput: AnyObject {
     func setCalendarDate(_ date: Date?)
-    func setDateButtonChosen(_ choosen: DateButtonChosen)
+    func setActiveDateButton(_ choosen: ActiveDateButton)
     func setTimeButtonTitle(with text: String?)
-    func showTimePicker(withRemoveButton: Bool)
+    func showTimePicker(time: Date?)
 }
 
 class SelectDateViewController: UIViewController {
@@ -25,9 +25,9 @@ class SelectDateViewController: UIViewController {
     
     private var buttonStackView = UIStackView()
     private var calendar = CalendarView()
-    private var todayButton = ToggleButton()
-    private var tomorrowButton = ToggleButton()
-    private var noDateButton = ToggleButton()
+    private var todayButton = ActiveButton()
+    private var tomorrowButton = ActiveButton()
+    private var noDateButton = ActiveButton()
     private var twoButtonBar = TwoButtonBar()
     
     override func viewDidLoad() {
@@ -55,7 +55,7 @@ class SelectDateViewController: UIViewController {
         
         [todayButton, tomorrowButton, noDateButton].forEach { view in
             view.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-            view.isChosen = false
+            view.isActive = false
         }
         
         todayButton.styledText = R.string.localizable.commonToday()
@@ -123,26 +123,27 @@ extension SelectDateViewController: SelectDateViewInput {
         calendar.selectedDay = date
     }
     
-    func setDateButtonChosen(_ chosen: DateButtonChosen) {
+    func setActiveDateButton(_ chosen: ActiveDateButton) {
         [todayButton, tomorrowButton, noDateButton].forEach { button in
-            button.isChosen = false
+            button.isActive = false
         }
         switch chosen {
         case .today:
-            todayButton.isChosen = true
+            todayButton.isActive = true
         case .tomorrow:
-            tomorrowButton.isChosen = true
+            tomorrowButton.isActive = true
         case .noDate:
-            noDateButton.isChosen = true
-        case .other: break
+            noDateButton.isActive = true
+        case .noActive:
+            break
         }
     }
     
     func setTimeButtonTitle(with text: String?) {
-        twoButtonBar.leftButton.styledText = text ?? R.string.localizable.selectDateButtonTitleAddTime()
+        twoButtonBar.leftButton.styledText = text
     }
     
-    func showTimePicker(withRemoveButton: Bool) {
+    func showTimePicker(time: Date?) {
         let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         alertView.view.tintColor = Theme.currentTheme.color.mainAccent
         
@@ -152,14 +153,18 @@ extension SelectDateViewController: SelectDateViewInput {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .time
         
-        let cancelActionTitle = withRemoveButton ?
+        if let time = time {
+            datePicker.setDate(time, animated: false)
+        }
+        
+        let cancelActionTitle = time != nil ?
         R.string.localizable.commonRemove() :
         R.string.localizable.commonCancel()
         
         let cancelAction = UIAlertAction(
             title: cancelActionTitle,
             style: .default) { [weak self] _ in
-                if withRemoveButton {
+                if time != nil {
                     self?.output.didRemoveTime()
                 }
             }
