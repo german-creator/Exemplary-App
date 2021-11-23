@@ -1,23 +1,22 @@
 //
-//  MainViewController.swift
+//  CompletedTasksViewController.swift
 //  Exemplary App
 //
-//  Created by Герман Иванилов on 29.08.2021.
+//  Created by Герман Иванилов on 20/11/2021.
 //
 
 import UIKit
 import SnapKit
-import CoreStore
 
-protocol MainViewInput: AnyObject {
+protocol CompletedTasksViewInput: AnyObject {
     func reloadData()
 }
 
-class MainViewController: UIViewController {
-        
-    var output: MainViewOutput!
+class CompletedTasksViewController: UIViewController {
     
-    private let tableView = UITableView()
+    var output: CompletedTasksViewOutput!
+    
+    private let taskTableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +24,8 @@ class MainViewController: UIViewController {
         setupViews()
         setupLayout()
         
-        let swipeGestureRecognizerDown = UISwipeGestureRecognizer(
-            target: self, action: #selector(didSwipeToLeft(_:)))
-        swipeGestureRecognizerDown.direction = .left
+        let swipeGestureRecognizerDown = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeToLeft(_:)))
+        swipeGestureRecognizerDown.direction = .right
         view.addGestureRecognizer(swipeGestureRecognizerDown)
         
         output.viewIsReady()
@@ -35,38 +33,34 @@ class MainViewController: UIViewController {
     
     @objc
     private func didSwipeToLeft(_ sender: UISwipeGestureRecognizer){
-        output.didSwipeToLeft()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        output.viewDidDisappear()
+        output.didSwipeToRight()
     }
     
     private func setupViews() {
         view.backgroundColor = Theme.currentTheme.color.white
         
-        navigationItem.title = R.string.localizable.mainTitle()
+        navigationItem.title = R.string.localizable.completedTasksTitle()
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .add,
+            title: R.string.localizable.commonClear(),
+            style: .plain,
             target: self,
-            action: #selector(didTapAddButton))
+            action: #selector(didTapClearButton))
         
-        tableView.register(TaskTableViewCell.self, forCellReuseIdentifier: TaskTableViewCell.reuseIdentifier)
-        tableView.rowHeight = TaskTableViewCell.height
-        tableView.estimatedRowHeight = TaskTableViewCell.estimatedHeight
-        tableView.showsVerticalScrollIndicator = false
-        tableView.alwaysBounceVertical = true
-        tableView.dataSource = self
-        tableView.delegate = self
+        taskTableView.register(TaskTableViewCell.self, forCellReuseIdentifier: TaskTableViewCell.reuseIdentifier)
+        taskTableView.rowHeight = TaskTableViewCell.height
+        taskTableView.estimatedRowHeight = TaskTableViewCell.estimatedHeight
+        taskTableView.showsVerticalScrollIndicator = false
+        taskTableView.alwaysBounceVertical = true
+        taskTableView.dataSource = self
+        taskTableView.delegate = self
         
         output.viewIsReady()
     }
     
     private func setupLayout() {
-        view.addSubview(tableView)
+        view.addSubview(taskTableView)
 
-        tableView.snp.makeConstraints { make in
+        taskTableView.snp.makeConstraints { make in
             make.top.bottom.equalTo(view)
             make.leading.equalTo(view)
             make.trailing.equalTo(view)
@@ -74,12 +68,12 @@ class MainViewController: UIViewController {
     }
     
     @objc
-    private func didTapAddButton(){
-        output.didTapAddButton()
+    private func didTapClearButton(){
+        output.didTapClearButton()
     }
 }
 
-extension MainViewController: UITableViewDataSource {
+extension CompletedTasksViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return output.numberOfSections()
     }
@@ -96,7 +90,7 @@ extension MainViewController: UITableViewDataSource {
     }
 }
 
-extension MainViewController: UITableViewDelegate {
+extension CompletedTasksViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, _ in
@@ -109,25 +103,14 @@ extension MainViewController: UITableViewDelegate {
         return UISwipeActionsConfiguration(actions: [action])
     }
     
-    func tableView(_ tableView: UITableView,
-                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, _ in
-            self?.output.didTapDoneCell(at: indexPath)
-        }
-        
-        action.image = R.image.button_check()?.withSize(width: 30, height: 30)
-        action.backgroundColor = Theme.currentTheme.color.mainAccentLight
-        
-        return UISwipeActionsConfiguration(actions: [action])
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         output.didTapCell(at: indexPath)
     }
 }
 
-extension MainViewController: MainViewInput {
+extension CompletedTasksViewController: CompletedTasksViewInput {
     func reloadData() {
-        tableView.reloadData()
+        taskTableView.reloadData()
     }
 }
+

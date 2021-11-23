@@ -13,10 +13,11 @@ class TaskModule {
     let viewController: TaskViewController
     private let presenter: TaskPresenter
         
-    init(transition: Transition, config: TaskConfig) {
+    init(transition: Transition, mode: TaskModuleMode) {
         let viewController = TaskViewController()
         let router = TaskRouter()
-        let presenter = TaskPresenter(router: router, config: config)
+        let service = TaskService()
+        let presenter = TaskPresenter(router: router, service: service, mode: mode)
         
         viewController.output = presenter
         presenter.view = viewController

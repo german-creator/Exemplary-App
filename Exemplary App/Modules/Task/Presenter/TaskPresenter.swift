@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum TaskModuleMode {
+    case create, edit(task: Task), oldTask(task: Task)
+}
+
 protocol TaskOutput {
     func viewIsReady()
     func didTapSaveButton()
@@ -20,23 +24,24 @@ class TaskPresenter {
     weak var view: TaskInput?
     
     private let router: TaskRouter.Routes
+    private let service: TaskService
     
-    private var config: TaskConfig
-    private var task: Task
+    private var mode: TaskModuleMode
+    private var task = TaskCreation()
     
-    init(router: TaskRouter.Routes, config: TaskConfig) {
+    init(router: TaskRouter.Routes, service: TaskService, mode: TaskModuleMode) {
         self.router = router
-        self.config = config
-        switch config.mode {
-        case .create:
-            self.task = Task(id: "33", title: nil, description: nil, date: TaskDate(day: Date(), time: nil))
-        case .edit(let task):
-            self.task = task
+        self.service = service
+        self.mode = mode
+        switch mode {
+        case .create: break
+        case .edit(let task), .oldTask(let task):
+            self.task.set(with: task)
         }
     }
     
     private func updateDateButtonTitle() {
-        if let taskDate = task.date {
+        if let taskDate = task.taskDate {
             view?.setDateButtonTitle(with: taskDate.displayFormate)
         } else {
             view?.setDateButtonTitle(with: R.string.localizable.taskButtonTitleSelectDate())
@@ -44,11 +49,13 @@ class TaskPresenter {
     }
     
     private func updateSaveButtonTitle() {
-        switch config.mode {
+        switch mode {
         case .create:
             view?.setSaveButtonTitle(with: R.string.localizable.commonCreate())
         case .edit(_):
             view?.setSaveButtonTitle(with: R.string.localizable.commonSave())
+        case .oldTask(_):
+            view?.setSaveButtonTitle(with: R.string.localizable.commonActivate())
         }
     }
 }
@@ -61,18 +68,14 @@ extension TaskPresenter: TaskOutput {
     }
     
     func didTapSaveButton() {
-        switch config.mode {
-        case .edit(_):
-            config.output.didEditTask(task)
-        case .create:
-            config.output.didCreateTask(task)
-        }
+        service.createTask(task: task)
         router.close()
     }
     
     func didTapDateButton() {
-        router.openSelectDateModule(config: .init(taskDate: task.date, updateTime: { [weak self] taskDate in
-            self?.task.date = taskDate
+        router.openSelectDateModule(config: .init(taskDate: task.taskDate,
+                                                  updateTime: { [weak self] taskDate in
+            self?.task.taskDate = taskDate
             self?.updateDateButtonTitle()
         }))
     }
@@ -82,6 +85,6 @@ extension TaskPresenter: TaskOutput {
     }
     
     func didChaneDescription(_ text: String?) {
-        task.description = text
+        task.subtitle = text
     }
 }

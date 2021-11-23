@@ -13,11 +13,10 @@ class MainModule {
     let viewController: MainViewController
     private let presenter: MainPresenter
 
-        
     init() {
         let viewController = MainViewController()
         let router = MainRouter()
-        let service = UserDefaultsServise()
+        let service = MainService(isCompleteTasks: false)
         let presenter = MainPresenter(router: router, service: service)
         
         viewController.output = presenter

@@ -130,7 +130,7 @@ class CalendarView: UIView {
     
     private func updateSelectedDate() {
         if let selectedDay = selectedDay,
-           !Calendar.current.isDate(selectedDay, inSameMonthAs: currentMonth) {
+           calendarHelper.isDate(selectedDay, inSameMonthAs: currentMonth) {
             scrollToSelectedDate()
         } else {
             collectionView.reloadData()
@@ -200,7 +200,7 @@ extension CalendarView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width/8 - 5, height: 25)
+        return CGSize(width: collectionView.frame.width/7 - 10, height: 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

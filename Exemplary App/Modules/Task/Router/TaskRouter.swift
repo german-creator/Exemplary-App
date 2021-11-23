@@ -8,15 +8,15 @@
 import Foundation
 
 protocol TaskRoute: BottomContainerRoute {
-    func openCreateTaskModule(config: TaskConfig)
+    func openCreateTaskModule(mode: TaskModuleMode)
 }
 
 extension TaskRoute where Self: RouterProtocol {
-    func openCreateTaskModule(config: TaskConfig) {
+    func openCreateTaskModule(mode: TaskModuleMode) {
         let container = getBottomContainer()
         
         let result = container { transaction in
-            let createTaskModule = TaskModule(transition: transaction, config: config)
+            let createTaskModule = TaskModule(transition: transaction, mode: mode)
             return createTaskModule.viewController
         }
         open(result.viewController, transition: result.transition)

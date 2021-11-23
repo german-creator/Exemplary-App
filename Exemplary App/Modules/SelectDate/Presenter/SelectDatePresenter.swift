@@ -7,10 +7,10 @@
 
 import Foundation
 
-typealias TaskDateHandler = (TaskDate?) -> Void
+typealias TaskDateHandler = (TaskCreation.TaskDateCreation?) -> Void
 
 struct SelectDateModuleConfig {
-    var taskDate: TaskDate?
+    var taskDate: TaskCreation.TaskDateCreation?
     var updateTime: TaskDateHandler
 }
 
@@ -33,12 +33,12 @@ class SelectDatePresenter {
     private let router: SelectDateRouter.Routes
     
     private var config: SelectDateModuleConfig
-    private var taskDate: TaskDate
+    private var taskDate: TaskCreation.TaskDateCreation
 
     init(router: SelectDateRouter.Routes, config: SelectDateModuleConfig) {
         self.router = router
         self.config = config
-        self.taskDate = config.taskDate ?? TaskDate(day: Date(), time: nil)
+        self.taskDate = config.taskDate ?? TaskCreation.TaskDateCreation(day: Date(), time: nil)
     }
     
     private func updateTimeButtonTitle() {
@@ -50,19 +50,15 @@ class SelectDatePresenter {
     }
     
     private func updateActiveButtons() {
-        var activeButton: ActiveDateButton
         if let day = taskDate.day {
-            if Calendar.current.isDateInToday(day) {
-                activeButton = .today
-            } else if Calendar.current.isDateInTomorrow(day) {
-                activeButton = .tomorrow
-            } else {
-                activeButton = .noActive
-            }
+            view?.setTodayBottonActive(Calendar.current.isDateInToday(day))
+            view?.setTomorrowBottonActive(Calendar.current.isDateInTomorrow(day))
+            view?.setNoDateBottonActive(false)
         } else {
-            activeButton = .noDate
+            view?.setTodayBottonActive(false)
+            view?.setTomorrowBottonActive(false)
+            view?.setNoDateBottonActive(true)
         }
-        view?.setActiveDateButton(activeButton)
     }
 }
 

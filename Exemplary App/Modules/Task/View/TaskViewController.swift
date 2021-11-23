@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TaskInput: AnyObject {
-    func setTask(task: Task?)
+    func setTask(task: TaskCreation?)
     func setDateButtonTitle(with text: String?)
     func setSaveButtonTitle(with text: String?)
 }
@@ -121,9 +121,9 @@ class TaskViewController: UIViewController {
 }
 
 extension TaskViewController: TaskInput {
-    func setTask(task: Task?) {
+    func setTask(task: TaskCreation?) {
         titleTextField.styledText = task?.title
-        descriptionTextView.styledText = task?.description
+        descriptionTextView.styledText = task?.subtitle
     }
     
     func setDateButtonTitle(with text: String?) {

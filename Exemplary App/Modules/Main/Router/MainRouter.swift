@@ -15,6 +15,6 @@ extension MainRoute where Self: RouterProtocol {
 
 class MainRouter: Router<MainViewController>, MainRouter.Routes {
     
-    typealias Routes = Closable & TaskRoute & BottomContainerRoute
+    typealias Routes = Closable & TaskRoute & BottomContainerRoute & CompletedTasksRoute
     
 }

@@ -8,17 +8,6 @@
 import UIKit
 import SnapKit
 
-struct TaskViewModel {
-    enum Status {
-        case base, overdue, completed
-    }
-    
-    let status: Status
-    let title: String
-    let date: Date?
-    let addInfo: Bool?
-}
-
 class TaskTableViewCell: UITableViewCell {
     
     static var reuseIdentifier: String {
@@ -36,7 +25,7 @@ class TaskTableViewCell: UITableViewCell {
     
     private let statusViewSize = CGFloat(38)
     
-    var viewModel:Task? {
+    var viewModel: Task? {
         didSet {
             setupTask()
         }
@@ -68,13 +57,14 @@ class TaskTableViewCell: UITableViewCell {
         )
         
         stackView.axis = .vertical
-  
+        stackView.distribution = .fill
     }
     
     private func setupLayout() {
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(descriptionLabel)
         stackView.addArrangedSubview(dateLabel)
+        stackView.setCustomSpacing(5, after: descriptionLabel)
         
         addSubview(statusView)
         addSubview(stackView)
@@ -100,22 +90,30 @@ class TaskTableViewCell: UITableViewCell {
             dateLabel.bonMotStyle = Theme.currentTheme.stringStyle.h3_15_r.byAdding(
                 .color(Theme.currentTheme.color.mainAccent)
             )
+            titleLabel.styledText = viewModel?.title
+            descriptionLabel.styledText = viewModel?.subtitle
+            dateLabel.styledText = viewModel?.taskDate?.displayFormate
+
         case .overdue:
             statusView.backgroundColor = Theme.currentTheme.color.secondRedDark
             dateLabel.bonMotStyle = Theme.currentTheme.stringStyle.h3_15_r.byAdding(
                 .color(Theme.currentTheme.color.secondRedDark)
             )
+            titleLabel.styledText = viewModel?.title
+            descriptionLabel.styledText = viewModel?.subtitle
+            dateLabel.styledText = viewModel?.taskDate?.displayFormate
+
         case .completed:
             statusView.backgroundColor = Theme.currentTheme.color.grey
-            dateLabel.bonMotStyle = Theme.currentTheme.stringStyle.h3_15_r.byAdding(
+            titleLabel.bonMotStyle = Theme.currentTheme.stringStyle.h3_15_r.byAdding(
                 .color(Theme.currentTheme.color.grey)
             )
+            titleLabel.styledText = viewModel?.title
+            descriptionLabel.isHidden = true
+            dateLabel.isHidden = true
+            
         case .none:
             break
         }
-        
-        titleLabel.styledText = viewModel?.title
-        descriptionLabel.styledText = viewModel?.description
-        dateLabel.styledText = viewModel?.date?.displayFormate
     }
 }

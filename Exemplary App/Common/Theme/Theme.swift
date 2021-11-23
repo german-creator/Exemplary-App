@@ -58,7 +58,7 @@ private struct LightColorTheme: ColorTheme {
     var secondPink: UIColor = #colorLiteral(red: 1, green: 0.6509803922, blue: 0.6196078431, alpha: 1)
     var secondGreen: UIColor = #colorLiteral(red: 0.662745098, green: 0.8980392157, blue: 0.7843137255, alpha: 1)
     var black: UIColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
-    var grey: UIColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1).withAlphaComponent(0.5)
+    var grey: UIColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1).withAlphaComponent(0.3)
     var white: UIColor = .white
 }
 

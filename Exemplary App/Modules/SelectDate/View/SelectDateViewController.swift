@@ -8,13 +8,11 @@
 import UIKit
 import SnapKit
 
-enum ActiveDateButton {
-    case today, tomorrow, noDate, noActive
-}
-
 protocol SelectDateViewInput: AnyObject {
     func setCalendarDate(_ date: Date?)
-    func setActiveDateButton(_ choosen: ActiveDateButton)
+    func setTodayBottonActive(_ isActive: Bool)
+    func setTomorrowBottonActive(_ isActive: Bool)
+    func setNoDateBottonActive(_ isActive: Bool)
     func setTimeButtonTitle(with text: String?)
     func showTimePicker(time: Date?)
 }
@@ -123,20 +121,16 @@ extension SelectDateViewController: SelectDateViewInput {
         calendar.selectedDay = date
     }
     
-    func setActiveDateButton(_ chosen: ActiveDateButton) {
-        [todayButton, tomorrowButton, noDateButton].forEach { button in
-            button.isActive = false
-        }
-        switch chosen {
-        case .today:
-            todayButton.isActive = true
-        case .tomorrow:
-            tomorrowButton.isActive = true
-        case .noDate:
-            noDateButton.isActive = true
-        case .noActive:
-            break
-        }
+    func setTodayBottonActive(_ isActive: Bool) {
+        todayButton.isActive = isActive
+    }
+    
+    func setTomorrowBottonActive(_ isActive: Bool) {
+        tomorrowButton.isActive = isActive
+    }
+    
+    func setNoDateBottonActive(_ isActive: Bool) {
+        noDateButton.isActive = isActive
     }
     
     func setTimeButtonTitle(with text: String?) {

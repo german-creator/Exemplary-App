@@ -58,4 +58,8 @@ class CalendarHelper {
     func addDays(date: Date, days: Int) -> Date {
         return calendar.date(byAdding: .day, value: days, to: date)!
     }
+    
+    func isDate(_ date: Date, inSameMonthAs compareDate: Date) -> Bool {
+        return calendar.isDate(date, equalTo: compareDate, toGranularity: .month)
+    }
 }

@@ -1,67 +1,56 @@
 //
-//  MainPresenter.swift
+//  CompletedTasksPresenter.swift
 //  Exemplary App
 //
-//  Created by Герман Иванилов on 29.08.2021.
+//  Created by Герман Иванилов on 20/11/2021.
 //
 
 import Foundation
 import CoreStore
 
-protocol MainViewOutput {
+protocol CompletedTasksViewOutput {
     func viewIsReady()
-    func viewDidDisappear()
-    func didTapAddButton()
+    func didTapClearButton()
     func didTapCell(at indexPath: IndexPath)
     func didTapDeleteCell(at indexPath: IndexPath)
-    func didTapDoneCell(at indexPath: IndexPath)
-    func didSwipeToLeft()
+    func didSwipeToRight()
     func numberOfSections() -> Int
     func numberOfViewModels(in section: Int) -> Int
     func viewModel(at indexPath: IndexPath) -> Task
 }
 
-class MainPresenter {
-
-    weak var view: MainViewInput?
+class CompletedTasksPresenter {
     
-    private let router: MainRouter.Routes
+    weak var view: CompletedTasksViewInput?
+    
+    private let router: CompletedTasksRouter.Routes
     private let service: MainService
         
-    init(router: MainRouter.Routes, service: MainService) {
+    init(router: CompletedTasksRouter.Routes, service: MainService) {
         self.router = router
         self.service = service
     }
 }
 
-extension MainPresenter: MainViewOutput {
+extension CompletedTasksPresenter: CompletedTasksViewOutput {
     func viewIsReady() {
         service.monitor.addObserver(self)
         view?.reloadData()
     }
-    
-    func viewDidDisappear() {
-    }
-    
-    func didTapAddButton() {
-        router.openCreateTaskModule(mode: .create)
+
+    func didTapClearButton() {
     }
     
     func didTapCell(at indexPath: IndexPath) {
-        router.openCreateTaskModule(mode: .edit(task: service.viewModel(at: indexPath)))
+        router.openCreateTaskModule(mode: .oldTask(task: service.viewModel(at: indexPath)))
     }
-    
     
     func didTapDeleteCell(at indexPath: IndexPath) {
         service.removeTask(at: indexPath)
     }
-    
-    func didTapDoneCell(at indexPath: IndexPath) {
-        service.updateTask(at: indexPath)
-    }
-    
-    func didSwipeToLeft() {
-        router.openCompletedTasksModule()
+
+    func didSwipeToRight() {
+        router.close()
     }
     
     func numberOfSections() -> Int {
@@ -77,7 +66,7 @@ extension MainPresenter: MainViewOutput {
     }
 }
 
-extension MainPresenter: ListObserver {
+extension CompletedTasksPresenter: ListObserver {
     typealias ListEntityType = Task
 
     func listMonitorDidChange(_ monitor: ListMonitor<Task>) {

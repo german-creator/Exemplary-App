@@ -15,6 +15,10 @@
 "common.noDate" = "No Date";
 "common.save" = "Save";
 "common.remove" = "Remove";
+"common.activate" = "Activate";
+"common.clear" = "Clear";
+
+"main.title" = "Tasks";
 
 "task.title.placeholder" = "Task Name";
 "task.desctiption.placeholder" = "Description";
@@ -22,4 +26,4 @@
 
 "selectDate.buttonTitle.addTime" = "Add Time";
 
-
+"completedTasks.title" = "Completed Tasks";
