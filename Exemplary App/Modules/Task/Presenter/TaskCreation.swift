@@ -18,7 +18,7 @@ struct TaskCreation {
         var day: Date?
         var time: Date?
         
-        var displayFormate: String? {
+        var displayFormat: String? {
             var timeString: String?
             var dayString: String?
             
@@ -36,11 +36,15 @@ struct TaskCreation {
                 }
             }
             
-            if timeString != nil || dayString != nil {
-                return (dayString ?? "") + (timeString ?? "")
-            } else {
-                return nil
-            }
+            guard timeString != nil || dayString != nil else { return nil }
+            
+            return (dayString ?? "") + (timeString ?? "")
+        }
+        
+        func dictionary() -> [String: Any]? {
+            guard day != nil || time != nil else { return nil }
+            
+            return ["day": day as Any, "time": time as Any]
         }
     }
     
@@ -52,5 +56,13 @@ struct TaskCreation {
         if let task = task.taskDate {
             taskDate = .init(day: task.day, time: task.time)
         }
+    }
+    
+    func dictionary() -> [String: Any] {
+        return ["id": id ?? UUID().uuidString,
+                "title": title as Any,
+                "subtitle": subtitle as Any,
+                "isComplete": isComplete as Any,
+                "taskDate": taskDate?.dictionary() as Any] as [String : Any]
     }
 }

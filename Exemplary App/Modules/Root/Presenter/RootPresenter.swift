@@ -16,8 +16,7 @@ class RootPresenter {
 }
 
 extension RootPresenter: RootModuleInput {
-    
-    func configureNavigationStack() {
-        router.openMainModule(animated: false)
+    func configureMainView() {
+        router.openTaskListModule(animated: true)
     }
 }

@@ -9,11 +9,6 @@ import Foundation
 
 typealias TaskDateHandler = (TaskCreation.TaskDateCreation?) -> Void
 
-struct SelectDateModuleConfig {
-    var taskDate: TaskCreation.TaskDateCreation?
-    var updateTime: TaskDateHandler
-}
-
 protocol SelectDateViewOutput {
     func viewIsReady()
     func didTapTime()
@@ -70,14 +65,14 @@ extension SelectDatePresenter: SelectDateViewOutput {
     }
     
     func didTapTime() {
-        view?.showTimePicker(time: taskDate.time ?? Date())
+        view?.showTimePicker(time: taskDate.time)
     }
     
     func didTapSave() {
         if taskDate.day != nil || taskDate.time != nil {
-            config.updateTime(taskDate)
+            config.updateTimeHandler(taskDate)
         } else {
-            config.updateTime(nil)
+            config.updateTimeHandler(nil)
         }
         router.close()
     }

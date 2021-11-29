@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct SelectDateModuleConfig {
+    var taskDate: TaskCreation.TaskDateCreation?
+    var updateTimeHandler: TaskDateHandler
+}
+
 class SelectDateModule {
     
     let router: SelectDateRouter

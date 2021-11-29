@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.tintColor = Theme.light.color.mainAccent
         let rootModule = RootModule(window: window ?? UIWindow())
-        rootModule.input.configureNavigationStack()
+        rootModule.input.configureMainView()
         self.window?.makeKeyAndVisible()
         self.rootModule = rootModule
     }

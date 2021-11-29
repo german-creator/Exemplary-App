@@ -11,6 +11,7 @@ protocol TaskInput: AnyObject {
     func setTask(task: TaskCreation?)
     func setDateButtonTitle(with text: String?)
     func setSaveButtonTitle(with text: String?)
+    func showError(title: String, message: String?)
 }
 
 class TaskViewController: UIViewController {
@@ -133,7 +134,10 @@ extension TaskViewController: TaskInput {
     func setSaveButtonTitle(with text: String?) {
         toolbar.rightButton.styledText = text
     }
-
+    
+    func showError(title: String, message: String?) {
+        showErrorAlert(title: title, message: message)
+    }
 }
 
 extension TaskViewController: UITextViewDelegate {

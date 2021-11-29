@@ -6,7 +6,6 @@
 //
 
 import CoreStore
-import SwiftyJSON
 
 @objc(Task)
 public class Task: NSManagedObject {
@@ -19,22 +18,23 @@ extension Task: ImportableUniqueObject {
     }
     
     public typealias UniqueIDType = String
-    public typealias ImportSource = JSON
+    public typealias ImportSource = [String: Any]
     
     public static var uniqueIDKeyPath: String {
-        return "id" //#keyPath(User.id)
+        return "id"
     }
     
     public static func uniqueID(from source: ImportSource, in transaction: BaseDataTransaction) throws -> String? {
-        return source["id"].string
+        return source["id"] as? String
     }
     
     public func update(from source: ImportSource, in transaction: BaseDataTransaction) throws {
-        id = source["id"].string ?? ""
-        title = source["title"].string ?? ""
-        subtitle = source["subtitle"].string ?? ""
-        isComplete = source["isComplete"].bool ?? false
-        try taskDate = transaction.importObject(Into<TaskDate>(), source: source["taskDate"])
+        title = source["title"] as? String
+        subtitle = source["subtitle"] as? String
+        isComplete = source["isComplete"] as? Bool ?? false
+        if let date = source["taskDate"] as? [String: Any] {
+            try taskDate = transaction.importObject(Into<TaskDate>(), source: date)
+        }
     }
 }
 

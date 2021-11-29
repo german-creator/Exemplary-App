@@ -23,7 +23,8 @@ class TaskModule {
         presenter.view = viewController
         router.viewController = viewController
         router.openTransition = transition
-
+        service.output = presenter
+        
         self.router = router
         self.viewController = viewController
         self.presenter = presenter

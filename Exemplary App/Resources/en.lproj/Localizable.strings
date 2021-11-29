@@ -18,7 +18,16 @@
 "common.activate" = "Activate";
 "common.clear" = "Clear";
 
-"main.title" = "Tasks";
+"common.errorTitle" = "Error";
+"common.errorMessage" = "Something went wrong";
+
+"taskList.currentTasks.title" = "Tasks";
+"taskList.currentTasks.emptyView.title" = "You have no active tasks";
+"taskList.currentTasks.description" = "Create one if you need to do something";
+
+"taskList.completedTasks.title" = "Completed Tasks";
+"taskList.completedTasks.emptyView.title" = "The list of completed tasks is empty";
+"taskList.completedTasks.emptyView.description" = "You can watch what tasks you have completed and activate them if necessary";
 
 "task.title.placeholder" = "Task Name";
 "task.desctiption.placeholder" = "Description";
@@ -26,4 +35,5 @@
 
 "selectDate.buttonTitle.addTime" = "Add Time";
 
-"completedTasks.title" = "Completed Tasks";
+
+

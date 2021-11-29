@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RootRoutes {
-    func openMainModule(animated: Bool)
+    func openTaskListModule(animated: Bool)
 }
 
 class RootRouter: RootRoutes {
@@ -19,8 +19,8 @@ class RootRouter: RootRoutes {
         rootWindow = window
     }
     
-    func openMainModule(animated: Bool) {
-        let module = MainModule()
+    func openTaskListModule(animated: Bool) {
+        let module = TaskListModule(transition: nil, mode: .currentTasks)
         openModuleViewController(module.viewController, animated: animated)
     }
     

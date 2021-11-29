@@ -138,51 +138,13 @@ extension SelectDateViewController: SelectDateViewInput {
     }
     
     func showTimePicker(time: Date?) {
-        let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        alertView.view.tintColor = Theme.currentTheme.color.mainAccent
-        
-        let datePicker: UIDatePicker = UIDatePicker()
-        
-        datePicker.timeZone = .current
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.datePickerMode = .time
-        
-        if let time = time {
-            datePicker.setDate(time, animated: false)
-        }
-        
-        let cancelActionTitle = time != nil ?
-        R.string.localizable.commonRemove() :
-        R.string.localizable.commonCancel()
-        
-        let cancelAction = UIAlertAction(
-            title: cancelActionTitle,
-            style: .default) { [weak self] _ in
-                if time != nil {
-                    self?.output.didRemoveTime()
-                }
+        showDatePickerAlert(date: time) { date in
+            if let date = date {
+                self.output.didChangeTime(newTime: date)
+            } else {
+                self.output.didRemoveTime()
             }
-        
-        let okAction = UIAlertAction(
-            title: R.string.localizable.commonOk(),
-            style: .default) { [weak self] _ in
-                self?.output.didChangeTime(newTime: datePicker.date)
-            }
-        
-        alertView.view.addSubview(datePicker)
-        alertView.addAction(cancelAction)
-        alertView.addAction(okAction)
-        
-        datePicker.snp.makeConstraints { make in
-            make.leading.top.trailing.equalToSuperview()
-            make.height.equalTo(250)
         }
-        
-        alertView.view.snp.makeConstraints { make in
-            make.height.equalTo(280)
-        }
-        
-        present(alertView, animated: true)
     }
 }
 

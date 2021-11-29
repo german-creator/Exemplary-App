@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RootModuleInput: AnyObject {
-    func configureNavigationStack()
+    func configureMainView()
 }
 
 class RootModule {

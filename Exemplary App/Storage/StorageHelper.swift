@@ -7,18 +7,12 @@
 
 import Foundation
 import CoreStore
-import SwiftyJSON
 
 enum StorageHelper {
     static func setupStorage() {
         CoreStoreDefaults.dataStack = DataStack(xcodeModelName: "Exemplary_App")
         do {
-            try CoreStoreDefaults.dataStack.addStorageAndWait(
-                SQLiteStore(
-                    fileName: "exemplary.sqlite",
-                    localStorageOptions: .allowSynchronousLightweightMigration
-                )
-            )
+            try CoreStoreDefaults.dataStack.addStorageAndWait(SQLiteStore())
         } catch {
             print(error.localizedDescription)
         }
@@ -30,36 +24,59 @@ enum StorageHelper {
     }
     
     static func storeObject<Object: ImportableUniqueObject & ObjectRepresentation & Hashable>(
-        from json: JSON,
-        completion: @escaping (_ result: Result<Object, ApiError>) -> Void)
-    where Object.ImportSource == JSON {
-
+        from dicrionary: [String: Any],
+        completion: @escaping (_ result: Result<Object, CommonError>) -> Void)
+    where Object.ImportSource == [String: Any] {
+        
         CoreStoreDefaults.dataStack.perform(asynchronous: { transaction -> Object in
-            if let item = try transaction.importUniqueObject(Into<Object>(), source: json) {
+            if let item = try transaction.importUniqueObject(Into<Object>(), source: dicrionary) {
                 return item
             } else {
-                throw ApiError.init(type: .test)
+                throw CommonError.init(type: .parce)
             }
         }, success: { object in
             if let fetchedObject = CoreStoreDefaults.dataStack.fetchExisting(object) {
                 completion(.success(fetchedObject))
             } else {
-                completion(.failure(ApiError(type: .test)))
+                completion(.failure(CommonError(type: .database)))
             }
         }, failure: { _ in
-            completion(.failure(ApiError(type: .test)))
+            completion(.failure(CommonError(type: .parce)))
         })
     }
     
     static func removeObject<Object: ImportableUniqueObject>(type: Object.Type, id: Object.UniqueIDType,
-                                                             completion: ((Result<Void, ApiError>) -> Void)? = nil) {
+                                                             completion: ((Result<Void, CommonError>) -> Void)? = nil) {
         CoreStoreDefaults.dataStack.perform(asynchronous: { transaction -> Void in
             try transaction.deleteAll(From<Object>().where(format: "\(Object.uniqueIDKeyPath) == %@", id))
         }, success: { _ in
             completion?(.success(()))
         }, failure: { _ in
-            completion?(.failure(ApiError(type: .test)))
+            completion?(.failure(CommonError(type: .database)))
         })
     }
     
+// MARK: - Task Storage Helper
+    
+    static func removeCompletedTasks(completion: ((Result<Void, CommonError>) -> Void)? = nil) {
+        CoreStoreDefaults.dataStack.perform(asynchronous: { transaction -> Void in
+            try transaction.deleteAll(From<Task>().where(\.isComplete == true))
+        }, success: { _ in
+            completion?(.success(()))
+        }, failure: { _ in
+            completion?(.failure(CommonError(type: .database)))
+        })
+    }
+    
+    static func updateTaskComplete(task: Task, newValue: Bool,
+                            completion: ((Result<Void, CommonError>) -> Void)? = nil) {
+        CoreStoreDefaults.dataStack.perform(asynchronous: { transaction -> Void in
+            let editedObject = transaction.edit(task)
+            editedObject?.isComplete = true
+        }, success: { _ in
+            completion?(.success(()))
+        }, failure: { _ in
+            completion?(.failure(CommonError(type: .database)))
+        })
+    }
 }

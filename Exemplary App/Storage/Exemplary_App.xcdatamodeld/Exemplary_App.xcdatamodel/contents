@@ -8,8 +8,8 @@
         <relationship name="taskDate" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TaskDate" inverseName="task" inverseEntity="TaskDate"/>
     </entity>
     <entity name="TaskDate" representedClassName="TaskDate" syncable="YES" codeGenerationType="category">
-        <attribute name="dayRaw" optional="YES" attributeType="String"/>
-        <attribute name="timeRaw" optional="YES" attributeType="String"/>
+        <attribute name="day" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="taskDate" inverseEntity="Task"/>
     </entity>
     <elements>

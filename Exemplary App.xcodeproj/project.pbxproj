@@ -20,11 +20,16 @@
 		BA3E1159274A9FF100EA2EE4 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3E1158274A9FF100EA2EE4 /* Task+CoreDataClass.swift */; };
 		BA476C312709B48500A07DF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA476C302709B48500A07DF3 /* Constants.swift */; };
 		BA6881AD272ECF5400BBEB4B /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6881AC272ECF5400BBEB4B /* CalendarHelper.swift */; };
-		BA753976274B9C1200D4728B /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA753975274B9C1200D4728B /* ApiError.swift */; };
+		BA753976274B9C1200D4728B /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA753975274B9C1200D4728B /* CommonError.swift */; };
 		BA753978274BAEE500D4728B /* TaskDate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA753977274BAEE500D4728B /* TaskDate+CoreDataClass.swift */; };
-		BA75397A274BE23200D4728B /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA753979274BE23200D4728B /* MainService.swift */; };
 		BA9618CF2726F4AB00D958A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA9618D12726F4AB00D958A6 /* Localizable.strings */; };
 		BA9618DD27270AFA00D958A6 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9618DC27270AFA00D958A6 /* R.generated.swift */; };
+		BA97FC4E2753B97F00709759 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA97FC4A2753B97F00709759 /* TaskListViewController.swift */; };
+		BA97FC4F2753B97F00709759 /* TaskListModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA97FC4B2753B97F00709759 /* TaskListModule.swift */; };
+		BA97FC502753B97F00709759 /* TaskListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA97FC4C2753B97F00709759 /* TaskListPresenter.swift */; };
+		BA97FC512753B97F00709759 /* TaskListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA97FC4D2753B97F00709759 /* TaskListRouter.swift */; };
+		BA97FC572753BA8F00709759 /* TaskListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA97FC562753BA8F00709759 /* TaskListService.swift */; };
+		BAAC02F5275279CE00861610 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAC02F4275279CE00861610 /* UITableView.swift */; };
 		BAAF5A4B26DBABCD001A2545 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A4A26DBABCD001A2545 /* AppDelegate.swift */; };
 		BAAF5A4D26DBABCD001A2545 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A4C26DBABCD001A2545 /* SceneDelegate.swift */; };
 		BAAF5A5426DBABD1001A2545 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAAF5A5326DBABD1001A2545 /* Assets.xcassets */; };
@@ -33,20 +38,13 @@
 		BAAF5A6D26DBAE1F001A2545 /* RootPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A6C26DBAE1F001A2545 /* RootPresenter.swift */; };
 		BAAF5A6F26DBAE29001A2545 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A6E26DBAE29001A2545 /* RootRouter.swift */; };
 		BAAF5A7326DBAE9A001A2545 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A7226DBAE9A001A2545 /* Theme.swift */; };
-		BAAF5A7926DBB325001A2545 /* MainModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A7826DBB325001A2545 /* MainModule.swift */; };
-		BAAF5A7B26DBB35E001A2545 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A7A26DBB35E001A2545 /* MainPresenter.swift */; };
-		BAAF5A7D26DBB36F001A2545 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A7C26DBB36F001A2545 /* MainViewController.swift */; };
-		BAAF5A7F26DBB381001A2545 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A7E26DBB381001A2545 /* MainRouter.swift */; };
 		BAAF5A8726DBF229001A2545 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF5A8626DBF229001A2545 /* TaskTableViewCell.swift */; };
 		BAB48CAA2749569200ECB333 /* Exemplary_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAB48CA82749569200ECB333 /* Exemplary_App.xcdatamodeld */; };
-		BAB48CB0274975CD00ECB333 /* CompletedTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB48CAC274975CD00ECB333 /* CompletedTasksViewController.swift */; };
-		BAB48CB1274975CD00ECB333 /* CompletedTasksModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB48CAD274975CD00ECB333 /* CompletedTasksModule.swift */; };
-		BAB48CB2274975CD00ECB333 /* CompletedTasksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB48CAE274975CD00ECB333 /* CompletedTasksPresenter.swift */; };
-		BAB48CB3274975CD00ECB333 /* CompletedTasksRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB48CAF274975CD00ECB333 /* CompletedTasksRouter.swift */; };
 		BAB4D10D27281E0E0047676F /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB4D10C27281E0E0047676F /* InputTextView.swift */; };
 		BABD2E86274686DF00C3D177 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABD2E85274686DF00C3D177 /* UIImage.swift */; };
 		BABD2E8827468AD600C3D177 /* TaskCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABD2E8727468AD600C3D177 /* TaskCreation.swift */; };
 		BABD2E8A2746967D00C3D177 /* TaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABD2E892746967D00C3D177 /* TaskPresenter.swift */; };
+		BAC8C1812754FF6E00DE4260 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC8C1802754FF6E00DE4260 /* UIViewController.swift */; };
 		BACC2B48273439DA001C3A46 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACC2B47273439DA001C3A46 /* Date.swift */; };
 		BAE03D53271DB2B800F07F9D /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE03D52271DB2B800F07F9D /* TaskViewController.swift */; };
 		BAE03D57271DB2D900F07F9D /* TaskRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE03D56271DB2D900F07F9D /* TaskRouter.swift */; };
@@ -78,35 +76,33 @@
 		BA3E1158274A9FF100EA2EE4 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BA476C302709B48500A07DF3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BA6881AC272ECF5400BBEB4B /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
-		BA753975274B9C1200D4728B /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		BA753975274B9C1200D4728B /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
 		BA753977274BAEE500D4728B /* TaskDate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskDate+CoreDataClass.swift"; sourceTree = "<group>"; };
-		BA753979274BE23200D4728B /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		BA9618D02726F4AB00D958A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA9618DC27270AFA00D958A6 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		BA97FC4A2753B97F00709759 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		BA97FC4B2753B97F00709759 /* TaskListModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListModule.swift; sourceTree = "<group>"; };
+		BA97FC4C2753B97F00709759 /* TaskListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListPresenter.swift; sourceTree = "<group>"; };
+		BA97FC4D2753B97F00709759 /* TaskListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListRouter.swift; sourceTree = "<group>"; };
+		BA97FC562753BA8F00709759 /* TaskListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListService.swift; sourceTree = "<group>"; };
+		BAAC02F4275279CE00861610 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		BAAF5A4726DBABCD001A2545 /* Exemplary App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exemplary App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAAF5A4A26DBABCD001A2545 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAAF5A4C26DBABCD001A2545 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BAAF5A5326DBABD1001A2545 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BAAF5A5326DBABD1001A2545 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Exemplary App/Resources/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		BAAF5A5626DBABD1001A2545 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BAAF5A5826DBABD1001A2545 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAAF5A6A26DBAE14001A2545 /* RootModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootModule.swift; sourceTree = "<group>"; };
 		BAAF5A6C26DBAE1F001A2545 /* RootPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPresenter.swift; sourceTree = "<group>"; };
 		BAAF5A6E26DBAE29001A2545 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		BAAF5A7226DBAE9A001A2545 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		BAAF5A7826DBB325001A2545 /* MainModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModule.swift; sourceTree = "<group>"; };
-		BAAF5A7A26DBB35E001A2545 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
-		BAAF5A7C26DBB36F001A2545 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		BAAF5A7E26DBB381001A2545 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		BAAF5A8626DBF229001A2545 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		BAB48CA92749569200ECB333 /* Exemplary_App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Exemplary_App.xcdatamodel; sourceTree = "<group>"; };
-		BAB48CAC274975CD00ECB333 /* CompletedTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTasksViewController.swift; sourceTree = "<group>"; };
-		BAB48CAD274975CD00ECB333 /* CompletedTasksModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTasksModule.swift; sourceTree = "<group>"; };
-		BAB48CAE274975CD00ECB333 /* CompletedTasksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTasksPresenter.swift; sourceTree = "<group>"; };
-		BAB48CAF274975CD00ECB333 /* CompletedTasksRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTasksRouter.swift; sourceTree = "<group>"; };
 		BAB4D10C27281E0E0047676F /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		BABD2E85274686DF00C3D177 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		BABD2E8727468AD600C3D177 /* TaskCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCreation.swift; sourceTree = "<group>"; };
 		BABD2E892746967D00C3D177 /* TaskPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskPresenter.swift; sourceTree = "<group>"; };
+		BAC8C1802754FF6E00DE4260 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		BACC2B47273439DA001C3A46 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		BAE03D52271DB2B800F07F9D /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		BAE03D56271DB2D900F07F9D /* TaskRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRouter.swift; sourceTree = "<group>"; };
@@ -178,9 +174,9 @@
 		BA1277C026EE62D4006B4CEF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BAAC02F3275279BD00861610 /* UI */,
 				BA1277C326EE6300006B4CEF /* DateFormatter.swift */,
 				BACC2B47273439DA001C3A46 /* Date.swift */,
-				BABD2E85274686DF00C3D177 /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -211,6 +207,60 @@
 				BA28E10F272DA300009223BA /* ActiveButton.swift */,
 			);
 			path = ActiveButton;
+			sourceTree = "<group>";
+		};
+		BA97FC492753B95300709759 /* TaskList */ = {
+			isa = PBXGroup;
+			children = (
+				BA97FC532753B99A00709759 /* Module */,
+				BA97FC552753B9AC00709759 /* View */,
+				BA97FC542753B9A200709759 /* Presenter */,
+				BA97FC522753B99000709759 /* Router */,
+			);
+			path = TaskList;
+			sourceTree = "<group>";
+		};
+		BA97FC522753B99000709759 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				BA97FC4D2753B97F00709759 /* TaskListRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		BA97FC532753B99A00709759 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				BA97FC4B2753B97F00709759 /* TaskListModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		BA97FC542753B9A200709759 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BA97FC4C2753B97F00709759 /* TaskListPresenter.swift */,
+				BA97FC562753BA8F00709759 /* TaskListService.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BA97FC552753B9AC00709759 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA97FC4A2753B97F00709759 /* TaskListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BAAC02F3275279BD00861610 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				BABD2E85274686DF00C3D177 /* UIImage.swift */,
+				BAAC02F4275279CE00861610 /* UITableView.swift */,
+				BAC8C1802754FF6E00DE4260 /* UIViewController.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		BAAF5A3E26DBABCD001A2545 = {
@@ -260,7 +310,7 @@
 				BAB48CA82749569200ECB333 /* Exemplary_App.xcdatamodeld */,
 				BA0DA63827299B3A00CEA2D6 /* Models */,
 				BA3E1152274A834100EA2EE4 /* StorageHelper.swift */,
-				BA753975274B9C1200D4728B /* ApiError.swift */,
+				BA753975274B9C1200D4728B /* CommonError.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -268,12 +318,10 @@
 		BAAF5A6026DBAC19001A2545 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				BAB48CAB2749758D00ECB333 /* CompletedTasks */,
-				BA0DA63D2729B32B00CEA2D6 /* SelectDate */,
-				BAE03D5A271DB75C00F07F9D /* BottomContainer */,
-				BAE03D4D271DB24C00F07F9D /* Task */,
 				BAAF5A6626DBADE6001A2545 /* Root */,
-				BAAF5A6426DBAC75001A2545 /* Main */,
+				BA97FC492753B95300709759 /* TaskList */,
+				BA0DA63D2729B32B00CEA2D6 /* SelectDate */,
+				BAE03D4D271DB24C00F07F9D /* Task */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -281,6 +329,7 @@
 		BAAF5A6126DBAC27001A2545 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				BAE03D5A271DB75C00F07F9D /* BottomContainer */,
 				BA3BA4D92711C8760095E9F9 /* Routing */,
 				BA1277C026EE62D4006B4CEF /* Extensions */,
 				BAAF5A7026DBAE7D001A2545 /* Theme */,
@@ -306,17 +355,6 @@
 				BA476C302709B48500A07DF3 /* Constants.swift */,
 			);
 			path = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		BAAF5A6426DBAC75001A2545 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				BAAF5A7426DBB2CF001A2545 /* Module */,
-				BAAF5A7726DBB303001A2545 /* View */,
-				BAAF5A7526DBB2D5001A2545 /* Presenter */,
-				BAAF5A7626DBB2E2001A2545 /* Router */,
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 		BAAF5A6626DBADE6001A2545 /* Root */ = {
@@ -368,93 +406,8 @@
 				BAE8B30B272EBC0D00B73726 /* CalendarView */,
 				BAE9266D272AA2A000CDAE4D /* TwoButtonBar */,
 				BAB4D10B27281DC40047676F /* TextViews */,
-				BAAF5A8326DBF1DB001A2545 /* Cells */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		BAAF5A7426DBB2CF001A2545 /* Module */ = {
-			isa = PBXGroup;
-			children = (
-				BAAF5A7826DBB325001A2545 /* MainModule.swift */,
-			);
-			path = Module;
-			sourceTree = "<group>";
-		};
-		BAAF5A7526DBB2D5001A2545 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				BAAF5A7A26DBB35E001A2545 /* MainPresenter.swift */,
-				BA753979274BE23200D4728B /* MainService.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		BAAF5A7626DBB2E2001A2545 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				BAAF5A7E26DBB381001A2545 /* MainRouter.swift */,
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
-		BAAF5A7726DBB303001A2545 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BAAF5A7C26DBB36F001A2545 /* MainViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BAAF5A8326DBF1DB001A2545 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				BAAF5A8626DBF229001A2545 /* TaskTableViewCell.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		BAB48CAB2749758D00ECB333 /* CompletedTasks */ = {
-			isa = PBXGroup;
-			children = (
-				BAB48CB4274975D700ECB333 /* Module */,
-				BAB48CB5274975DC00ECB333 /* View */,
-				BAB48CB6274975E200ECB333 /* Presenter */,
-				BAB48CB7274975E900ECB333 /* Router */,
-			);
-			path = CompletedTasks;
-			sourceTree = "<group>";
-		};
-		BAB48CB4274975D700ECB333 /* Module */ = {
-			isa = PBXGroup;
-			children = (
-				BAB48CAD274975CD00ECB333 /* CompletedTasksModule.swift */,
-			);
-			path = Module;
-			sourceTree = "<group>";
-		};
-		BAB48CB5274975DC00ECB333 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BAB48CAC274975CD00ECB333 /* CompletedTasksViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BAB48CB6274975E200ECB333 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				BAB48CAE274975CD00ECB333 /* CompletedTasksPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		BAB48CB7274975E900ECB333 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				BAB48CAF274975CD00ECB333 /* CompletedTasksRouter.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		BAB4D10B27281DC40047676F /* TextViews */ = {
@@ -497,6 +450,7 @@
 		BAE03D50271DB27800F07F9D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BAAF5A8626DBF229001A2545 /* TaskTableViewCell.swift */,
 				BAE03D52271DB2B800F07F9D /* TaskViewController.swift */,
 			);
 			path = View;
@@ -742,20 +696,18 @@
 				BA3BA4DE271207A60095E9F9 /* Transition.swift in Sources */,
 				BA3BA4DB271207720095E9F9 /* Animator.swift in Sources */,
 				BA3BA4E0271207C90095E9F9 /* PushTransition.swift in Sources */,
-				BAB48CB0274975CD00ECB333 /* CompletedTasksViewController.swift in Sources */,
+				BA97FC4E2753B97F00709759 /* TaskListViewController.swift in Sources */,
 				BAE92667272A98EE00CDAE4D /* SelectDatePresenter.swift in Sources */,
 				BAE92665272A98EE00CDAE4D /* SelectDateViewController.swift in Sources */,
 				BAAF5A6D26DBAE1F001A2545 /* RootPresenter.swift in Sources */,
 				BAB48CAA2749569200ECB333 /* Exemplary_App.xcdatamodeld in Sources */,
-				BAB48CB1274975CD00ECB333 /* CompletedTasksModule.swift in Sources */,
 				BAE03D64271DBB6300F07F9D /* BottomContainerModule.swift in Sources */,
 				BA3E1159274A9FF100EA2EE4 /* Task+CoreDataClass.swift in Sources */,
+				BAAC02F5275279CE00861610 /* UITableView.swift in Sources */,
 				BAAF5A6B26DBAE14001A2545 /* RootModule.swift in Sources */,
 				BAB4D10D27281E0E0047676F /* InputTextView.swift in Sources */,
 				BAAF5A4B26DBABCD001A2545 /* AppDelegate.swift in Sources */,
 				BAE92666272A98EE00CDAE4D /* SelectDateModule.swift in Sources */,
-				BAAF5A7B26DBB35E001A2545 /* MainPresenter.swift in Sources */,
-				BAB48CB3274975CD00ECB333 /* CompletedTasksRouter.swift in Sources */,
 				BA3E1157274A9BC700EA2EE4 /* TaskService.swift in Sources */,
 				BAE03D57271DB2D900F07F9D /* TaskRouter.swift in Sources */,
 				BACC2B48273439DA001C3A46 /* Date.swift in Sources */,
@@ -763,31 +715,31 @@
 				BAE03D60271DB80500F07F9D /* BottomContainerRouter.swift in Sources */,
 				BAE8B30F272EC88300B73726 /* CalendarCollectionViewCell.swift in Sources */,
 				BA9618DD27270AFA00D958A6 /* R.generated.swift in Sources */,
+				BA97FC4F2753B97F00709759 /* TaskListModule.swift in Sources */,
 				BA3BA4D82711C21B0095E9F9 /* Router.swift in Sources */,
 				BABD2E8827468AD600C3D177 /* TaskCreation.swift in Sources */,
 				BAE9266F272AA2B400CDAE4D /* TwoButtonBar.swift in Sources */,
 				BAE03D59271DB2E500F07F9D /* TaskModule.swift in Sources */,
+				BAC8C1812754FF6E00DE4260 /* UIViewController.swift in Sources */,
 				BABD2E8A2746967D00C3D177 /* TaskPresenter.swift in Sources */,
 				BA28E110272DA301009223BA /* ActiveButton.swift in Sources */,
 				BAAF5A6F26DBAE29001A2545 /* RootRouter.swift in Sources */,
 				BAE03D53271DB2B800F07F9D /* TaskViewController.swift in Sources */,
 				BABD2E86274686DF00C3D177 /* UIImage.swift in Sources */,
-				BA753976274B9C1200D4728B /* ApiError.swift in Sources */,
+				BA97FC572753BA8F00709759 /* TaskListService.swift in Sources */,
+				BA753976274B9C1200D4728B /* CommonError.swift in Sources */,
 				BA6881AD272ECF5400BBEB4B /* CalendarHelper.swift in Sources */,
+				BA97FC512753B97F00709759 /* TaskListRouter.swift in Sources */,
 				BAE03D62271DB86800F07F9D /* BottomContainerViewController.swift in Sources */,
-				BA75397A274BE23200D4728B /* MainService.swift in Sources */,
 				BA3E1153274A834100EA2EE4 /* StorageHelper.swift in Sources */,
-				BAAF5A7F26DBB381001A2545 /* MainRouter.swift in Sources */,
-				BAB48CB2274975CD00ECB333 /* CompletedTasksPresenter.swift in Sources */,
 				BAE92668272A98EE00CDAE4D /* SelectDateRouter.swift in Sources */,
 				BAE03D66271DBBAF00F07F9D /* BottomContainerPresenter.swift in Sources */,
 				BAAF5A4D26DBABCD001A2545 /* SceneDelegate.swift in Sources */,
 				BA3BA4E2271207DB0095E9F9 /* ModalTransition.swift in Sources */,
+				BA97FC502753B97F00709759 /* TaskListPresenter.swift in Sources */,
 				BAAF5A8726DBF229001A2545 /* TaskTableViewCell.swift in Sources */,
-				BAAF5A7D26DBB36F001A2545 /* MainViewController.swift in Sources */,
 				BA476C312709B48500A07DF3 /* Constants.swift in Sources */,
 				BAE8B30D272EBC3D00B73726 /* CalendarView.swift in Sources */,
-				BAAF5A7926DBB325001A2545 /* MainModule.swift in Sources */,
 				BAAF5A7326DBAE9A001A2545 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -938,6 +890,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HQ597X4W3A;
 				INFOPLIST_FILE = "Exemplary App/Info.plist";
@@ -948,7 +901,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ivanilovgerman.Exemplary-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -958,6 +911,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HQ597X4W3A;
 				INFOPLIST_FILE = "Exemplary App/Info.plist";
@@ -968,7 +922,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ivanilovgerman.Exemplary-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

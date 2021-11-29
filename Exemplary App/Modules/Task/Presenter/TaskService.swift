@@ -6,51 +6,29 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 protocol TaskServiceInput: AnyObject {
-    func createTask(task: TaskCreation)
+    func setTask(task: TaskCreation)
 }
 
 protocol TaskServiceOutput: AnyObject {
-    func createTaskSucceeded()
-    func createTask(didFailWith error: Error)
+    func setTaskSucceeded()
+    func setTask(didFailWith error: CommonError)
 }
 
 class TaskService {
     
     weak var output: TaskServiceOutput?
-    
 }
 
 extension TaskService: TaskServiceInput {
-    func createTask(task: TaskCreation) {
-        
-        var dayRaw: String? {
-            guard let day = task.taskDate?.day else { return nil }
-            return DateFormatter.serverDateFormatter.string(from: day)
-        }
-        
-        var timeRaw: String? {
-            guard let day = task.taskDate?.day else { return nil }
-            return DateFormatter.serverDateFormatter.string(from: day)
-        }
-        
-        let dateRaw = ["day": dayRaw as Any,
-                       "time": timeRaw as Any] as [String : Any]
-        
-        let dictionary = ["id": task.id ?? UUID().uuidString, "isComplete": task.isComplete as Any,
-                          "subtitle": task.subtitle as Any, "title": task.title as Any,
-                          "taskDate": dateRaw] as [String : Any]
-        
-        let json = JSON(dictionary)
-        
-        StorageHelper.storeObject(from: json) { (result: Result<Task, ApiError>) in
+    func setTask(task: TaskCreation) {
+        StorageHelper.storeObject(from: task.dictionary()) { (result: Result<Task, CommonError>) in
             switch result {
             case .success(_):
-                print("success store")
-            case .failure(_):
-                print("failure store")
+                self.output?.setTaskSucceeded()
+            case let .failure(error):
+                self.output?.setTask(didFailWith: error)
             }
         }
     }

@@ -6,7 +6,6 @@
 //
 
 import CoreStore
-import SwiftyJSON
 
 @objc(TaskDate)
 public class TaskDate: NSManagedObject {
@@ -14,24 +13,16 @@ public class TaskDate: NSManagedObject {
 
 extension TaskDate: ImportableObject {
  
-    public typealias ImportSource = JSON
+    public typealias ImportSource = [String: Any]
     
-    public func didInsert(from source: JSON, in transaction: BaseDataTransaction) throws {
-        dayRaw = source["day"].string ?? ""
-        timeRaw = source["time"].string ?? ""
+    public func didInsert(from source: [String: Any], in transaction: BaseDataTransaction) throws {
+        day = source["day"] as? Date
+        time = source["time"] as? Date
     }
 }
 
-extension TaskDate {
-    var day: Date? {
-        return dayRaw.flatMap(DateFormatter.serverDateFormatter.date)
-    }
-    
-    var time: Date? {
-        return timeRaw.flatMap(DateFormatter.serverDateFormatter.date)
-    }
-    
-    var displayFormate: String? {
+extension TaskDate {    
+    var displayFormat: String? {
         var timeString: String?
         var dayString: String?
         
@@ -49,11 +40,9 @@ extension TaskDate {
             }
         }
         
-        if timeString != nil || dayString != nil {
-            return (dayString ?? "") + (timeString ?? "")
-        } else {
-            return nil
-        }
+        guard timeString != nil || dayString != nil else { return nil }
+        
+        return (dayString ?? "") + (timeString ?? "")
     }
 }
 
