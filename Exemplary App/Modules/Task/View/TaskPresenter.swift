@@ -60,8 +60,6 @@ class TaskPresenter {
     }
     
     private func updateSaveButtonTitle() {
-        
-        
         view?.setSaveButtonTitle(with: R.string.localizable.commonCreate())
     }
 }

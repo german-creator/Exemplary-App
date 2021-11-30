@@ -21,7 +21,7 @@ protocol TaskListViewOutput {
     func viewModel(at indexPath: IndexPath) -> Task
 }
 
-class TaskListPresenter {
+final class TaskListPresenter {
     
     weak var view: TaskListViewInput?
     
@@ -100,12 +100,11 @@ extension TaskListPresenter: TaskListViewOutput {
                 return .edit(task: service.viewModel(at: indexPath))
             }
         }
-        
         router.openCreateTaskModule(mode: createTaskMode)
     }
     
     func didTapDoneCell(at indexPath: IndexPath) {
-        service.setTaskCompleted(at: indexPath)
+        service.setTaskIsComplete(isComplete: true, at: indexPath)
     }
     
     func numberOfViewModels(in section: Int) -> Int {
@@ -134,7 +133,7 @@ extension TaskListPresenter: TaskListServiceOutput {
         view?.showError(title: R.string.localizable.commonOk(), message: error.message)
     }
     
-    func setTaskCompleted(didFailWith error: CommonError) {
+    func setTaskComplete(didFailWith error: CommonError) {
         view?.showError(title: R.string.localizable.commonOk(), message: error.message)
     }
     

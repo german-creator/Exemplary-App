@@ -16,13 +16,14 @@ protocol TaskServiceOutput: AnyObject {
     func setTask(didFailWith error: CommonError)
 }
 
-class TaskService {
+final class TaskService {
     
     weak var output: TaskServiceOutput?
 }
 
 extension TaskService: TaskServiceInput {
     func setTask(task: TaskCreation) {
+        
         StorageHelper.storeObject(from: task.dictionary()) { (result: Result<Task, CommonError>) in
             switch result {
             case .success(_):

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ModalTransition: NSObject {
+final class ModalTransition: NSObject {
 
     var animator: Animator?
     var isAnimated: Bool = true

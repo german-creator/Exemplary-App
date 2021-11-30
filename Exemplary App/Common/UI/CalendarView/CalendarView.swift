@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol CelendarViewDelegate {
+protocol CelendarViewDelegate: AnyObject {
     func didChangeDate(_ date: Date)
 }
 
@@ -35,7 +35,7 @@ class CalendarView: UIView {
     private var daysArray = [Date?]()
     private let calendarItemsCount = 37
     
-    var delegate: CelendarViewDelegate?
+    weak var delegate: CelendarViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -102,20 +102,20 @@ class CalendarView: UIView {
             make.trailing.equalToSuperview().offset(-Constants.smallMargin)
             make.centerY.equalToSuperview()
         }
-        
+
         nextMonthButton.snp.makeConstraints { make in
             make.width.height.equalTo(25)
         }
         previousMonthButton.snp.makeConstraints { make in
             make.width.height.equalTo(25)
         }
-        
+
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(Constants.mediumMargin)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
-    
+
     @objc private func buttonPressed(_ sender: UIButton) {
         switch sender {
         case nextMonthButton:
@@ -143,26 +143,26 @@ class CalendarView: UIView {
         currentMonth = calendarHelper.firstOfMonth(date: selectedDay)
         setMonthView()
     }
-    
+
     private func setMonthView() {
         monthLabel.styledText = calendarHelper.monthString(date: currentMonth)
         + " " + calendarHelper.yearString(date: currentMonth)
-        
+
         updateDaysArray()
         collectionView.reloadData()
     }
     
     private func updateDaysArray() {
         daysArray.removeAll()
-        
+
         let daysInMonth = calendarHelper.daysInMonth(date: currentMonth)
         var day = calendarHelper.firstOfMonth(date: currentMonth)
         let startingSpaces = calendarHelper.weekDay(date: day)
-        
+
         var index = 0
-        
-        while(index < calendarItemsCount) {
-            if(index < startingSpaces || index - startingSpaces >= daysInMonth) {
+
+        while index < calendarItemsCount {
+            if index < startingSpaces || index - startingSpaces >= daysInMonth {
                 daysArray.append(nil)
             } else {
                 daysArray.append(day)
@@ -177,29 +177,35 @@ extension CalendarView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return daysArray.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CalendarCollectionViewCell.reuseIdentifier,
-            for: indexPath) as! CalendarCollectionViewCell
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCollectionViewCell.reuseIdentifier,
+                                                 for: indexPath) as? CalendarCollectionViewCell
 
         if let day = daysArray[indexPath.item] {
-            cell.text = calendarHelper.dayOfMonth(date: day)
-            
+            cell?.text = calendarHelper.dayOfMonth(date: day)
+
             var cellSelected = false
             if let selectedDay = selectedDay, Calendar.current.isDate(selectedDay, inSameDayAs: day) {
                cellSelected = true
             }
-            cell.backgroundColor = cellSelected ? Theme.currentTheme.color.mainAccentLight : Theme.currentTheme.color.white
-        } else  {
-            cell.text = ""
-            cell.backgroundColor = Theme.currentTheme.color.white
+            cell?.backgroundColor = cellSelected ?
+            Theme.currentTheme.color.mainAccentLight :
+            Theme.currentTheme.color.white
+
+        } else {
+            cell?.text = ""
+            cell?.backgroundColor = Theme.currentTheme.color.white
         }
         
-        return cell
+        return cell ?? UICollectionViewCell()
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: collectionView.frame.width/7 - 10, height: 25)
     }
     

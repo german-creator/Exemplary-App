@@ -11,7 +11,7 @@ protocol RootRoutes {
     func openTaskListModule(animated: Bool)
 }
 
-class RootRouter: RootRoutes {
+final class RootRouter: RootRoutes {
     
     let rootWindow: UIWindow
     

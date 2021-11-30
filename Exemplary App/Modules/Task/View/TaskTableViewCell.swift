@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class TaskTableViewCell: UITableViewCell {
+final class TaskTableViewCell: UITableViewCell {
     
     static var reuseIdentifier: String {
         return String(describing: TaskTableViewCell.self)

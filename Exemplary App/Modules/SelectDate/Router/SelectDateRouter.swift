@@ -21,7 +21,7 @@ extension SelectDateRoute where Self: RouterProtocol {
     }
 }
 
-class SelectDateRouter: Router<SelectDateViewController>, SelectDateRouter.Routes {
+final class SelectDateRouter: Router<SelectDateViewController>, SelectDateRouter.Routes {
     
     typealias Routes = Closable
 }

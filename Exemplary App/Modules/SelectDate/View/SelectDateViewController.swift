@@ -17,7 +17,7 @@ protocol SelectDateViewInput: AnyObject {
     func showTimePicker(time: Date?)
 }
 
-class SelectDateViewController: UIViewController {
+final class SelectDateViewController: UIViewController {
     
     var output: SelectDateViewOutput!
     

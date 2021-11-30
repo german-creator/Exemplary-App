@@ -1,0 +1,16 @@
+disabled_rules:
+- trailing_whitespace
+
+excluded:
+- Pods
+- Exemplary App/SupportingFiles/Generated
+
+identifier_name:
+    excluded:
+        - id
+
+type_name:
+    excluded:
+        - T
+        - U
+        - V

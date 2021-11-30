@@ -7,21 +7,19 @@
 
 import UIKit
 
-class PushTransition: NSObject {
-
+final class PushTransition: NSObject {
+    
     var animator: Animator?
     var isAnimated: Bool = true
     var completionHandler: (() -> Void)?
-
+    
     weak var sourceViewController: UIViewController?
-
+    
     init(animator: Animator? = nil, isAnimated: Bool = true) {
         self.animator = animator
         self.isAnimated = isAnimated
     }
 }
-
-// MARK: - Transition
 
 extension PushTransition: Transition {
     
@@ -35,14 +33,14 @@ extension PushTransition: Transition {
     }
 }
 
-// MARK: - UINavigationControllerDelegate
-
 extension PushTransition: UINavigationControllerDelegate {
-
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+    
+    func navigationController(_ navigationController: UINavigationController,
+                              didShow viewController: UIViewController,
+                              animated: Bool) {
         completionHandler?()
     }
-
+    
     func navigationController(_ navigationController: UINavigationController,
                               animationControllerFor operation: UINavigationController.Operation,
                               from fromVC: UIViewController,
@@ -50,11 +48,11 @@ extension PushTransition: UINavigationControllerDelegate {
         guard let animator = animator else {
             return nil
         }
+        
         if operation == .push {
             animator.isPresenting = true
             return animator
-        }
-        else {
+        } else {
             animator.isPresenting = false
             return animator
         }

@@ -45,5 +45,3 @@ extension TaskDate {
         return (dayString ?? "") + (timeString ?? "")
     }
 }
-
-

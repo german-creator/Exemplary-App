@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RootPresenter {
+final class RootPresenter {
     private let router: RootRoutes
     
     init(router: RootRoutes) {

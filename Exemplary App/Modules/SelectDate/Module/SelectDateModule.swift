@@ -12,7 +12,7 @@ struct SelectDateModuleConfig {
     var updateTimeHandler: TaskDateHandler
 }
 
-class SelectDateModule {
+final class SelectDateModule {
     
     let router: SelectDateRouter
     let viewController: SelectDateViewController

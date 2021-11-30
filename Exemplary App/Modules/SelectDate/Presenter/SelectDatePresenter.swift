@@ -21,7 +21,7 @@ protocol SelectDateViewOutput {
     func didRemoveTime()
 }
 
-class SelectDatePresenter {
+final class SelectDatePresenter {
     
     weak var view: SelectDateViewInput?
     
@@ -39,7 +39,7 @@ class SelectDatePresenter {
     private func updateTimeButtonTitle() {
         if let time = taskDate.time {
             view?.setTimeButtonTitle(with: DateFormatter.displayTimeFormatter.string(from: time))
-        } else  {
+        } else {
             view?.setTimeButtonTitle(with: R.string.localizable.selectDateButtonTitleAddTime())
         }
     }

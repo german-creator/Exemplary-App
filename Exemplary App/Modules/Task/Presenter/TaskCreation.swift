@@ -63,6 +63,6 @@ struct TaskCreation {
                 "title": title as Any,
                 "subtitle": subtitle as Any,
                 "isComplete": isComplete as Any,
-                "taskDate": taskDate?.dictionary() as Any] as [String : Any]
+                "taskDate": taskDate?.dictionary() as Any] as [String: Any]
     }
 }

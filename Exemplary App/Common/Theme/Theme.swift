@@ -40,11 +40,13 @@ protocol ColorTheme {
     var white: UIColor { get }
 }
 
+// swiftlint:disable identifier_name
 protocol TextTheme {
     var h1_20_b: BonMot.StringStyle { get }
     var h2_17_r: BonMot.StringStyle { get }
     var h3_15_r: BonMot.StringStyle { get }
 }
+// swiftlint:enable identifiecr_name
 
 private struct LightColorTheme: ColorTheme {
     var mainAccent: UIColor = #colorLiteral(red: 0.2549019608, green: 0.7764705882, blue: 0.9647058824, alpha: 1)
@@ -56,6 +58,7 @@ private struct LightColorTheme: ColorTheme {
     var white: UIColor = .white
 }
 
+// swiftlint:disable identifier_name
 private struct DefaultTextTheme: TextTheme {
     var h1_20_b = StringStyle(
         .font(UIFont.boldSystemFont(ofSize: 20)),

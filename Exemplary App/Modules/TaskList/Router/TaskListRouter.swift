@@ -17,7 +17,7 @@ extension TaskListRoute where Self: RouterProtocol {
     }
 }
 
-class TaskListRouter: Router<TaskListViewController>, TaskListRouter.Routes {
+final class TaskListRouter: Router<TaskListViewController>, TaskListRouter.Routes {
 
     typealias Routes = Closable & TaskListRoute & TaskRoute & BottomContainerRoute
     

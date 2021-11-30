@@ -11,7 +11,7 @@ enum TaskListMode {
     case currentTasks, complitedTasks
 }
 
-class TaskListModule {
+final class TaskListModule {
     
     let router: TaskListRouter
     let viewController: TaskListViewController
@@ -36,4 +36,3 @@ class TaskListModule {
         self.presenter = presenter
     }
 }
-

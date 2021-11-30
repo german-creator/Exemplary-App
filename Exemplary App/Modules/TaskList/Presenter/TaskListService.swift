@@ -13,13 +13,13 @@ protocol TaskListServiceInput {
     var taskCount: Int { get }
     func viewModel(at indexPath: IndexPath) -> Task
     func removeTask(at indexPath: IndexPath)
-    func setTaskCompleted(at indexPath: IndexPath)
+    func setTaskIsComplete(isComplete: Bool, at indexPath: IndexPath)
     func removeCompletedTasks()
 }
 
 protocol TaskListServiceOutput: AnyObject {
     func removeTask(didFailWith error: CommonError)
-    func setTaskCompleted(didFailWith error: CommonError)
+    func setTaskComplete(didFailWith error: CommonError)
     func removeCompletedTasks(didFailWith error: CommonError)
 }
 
@@ -46,9 +46,9 @@ extension TaskListService: TaskListServiceInput {
     }
     
     func removeTask(at indexPath: IndexPath) {
-        guard let id = monitor[indexPath].id else { return }
+        guard let taskId = monitor[indexPath].id else { return }
         
-        StorageHelper.removeObject(type: Task.self, id: id) { result in
+        StorageHelper.removeObject(type: Task.self, objectId: taskId) { result in
             switch result {
             case .success:
                 break
@@ -58,19 +58,19 @@ extension TaskListService: TaskListServiceInput {
         }
     }
     
-    func setTaskCompleted(at indexPath: IndexPath) {
-        StorageHelper.updateTaskComplete(task: monitor[indexPath], newValue: true) { result in
+    func setTaskIsComplete(isComplete: Bool, at indexPath: IndexPath) {
+        TaskStorageHelper.updateTaskComplete(task: monitor[indexPath], newValue: isComplete) { result in
             switch result {
             case .success:
                 break
             case let .failure(error):
-                self.output?.setTaskCompleted(didFailWith: error)
+                self.output?.setTaskComplete(didFailWith: error)
             }
         }
     }
     
     func removeCompletedTasks() {
-        StorageHelper.removeCompletedTasks { result in
+        TaskStorageHelper.removeCompletedTasks { result in
             switch result {
             case .success:
                 break

@@ -22,10 +22,10 @@ protocol RouterProtocol: AnyObject {
 
 class Router<U>: RouterProtocol where U: UIViewController {
     typealias V = U
-
+    
     weak var viewController: V?
     var openTransition: Transition?
-        
+    
     func open(_ viewController: UIViewController, transition: Transition) {
         open(viewController, transition: transition, completion: nil)
     }
@@ -51,4 +51,3 @@ class Router<U>: RouterProtocol where U: UIViewController {
         openTransition.close(viewController, completion: completion)
     }
 }
-

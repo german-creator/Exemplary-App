@@ -7,7 +7,11 @@
 
 import Foundation
 
-class TaskModule {
+enum TaskModuleMode {
+    case create, edit(task: Task), complitedTask(task: Task)
+}
+
+final class TaskModule {
     
     let router: TaskRouter
     let viewController: TaskViewController

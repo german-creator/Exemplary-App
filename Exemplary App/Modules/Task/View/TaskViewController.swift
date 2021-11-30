@@ -14,7 +14,7 @@ protocol TaskInput: AnyObject {
     func showError(title: String, message: String?)
 }
 
-class TaskViewController: UIViewController {
+final class TaskViewController: UIViewController {
     
     var output: TaskOutput!
     
@@ -22,7 +22,7 @@ class TaskViewController: UIViewController {
     var descriptionTextView = InputTextView()
     var toolbar = TwoButtonBar()
     
-    override func viewDidLoad(){
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
@@ -36,7 +36,7 @@ class TaskViewController: UIViewController {
         titleTextField.becomeFirstResponder()
     }
     
-    private func setupViews(){
+    private func setupViews() {
         view.backgroundColor = Theme.currentTheme.color.white
         view.layer.cornerRadius = 20
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -113,7 +113,9 @@ class TaskViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+                               as? NSValue)?.cgRectValue {
+            
             toolbar.snp.updateConstraints { make in
                 make.bottom.equalToSuperview().offset(-keyboardSize.height)
             }

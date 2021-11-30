@@ -7,10 +7,6 @@
 
 import Foundation
 
-enum TaskModuleMode {
-    case create, edit(task: Task), complitedTask(task: Task)
-}
-
 protocol TaskOutput {
     func viewIsReady()
     func didTapSaveButton()
@@ -19,7 +15,7 @@ protocol TaskOutput {
     func didChaneDescription(_ text: String?)
 }
 
-class TaskPresenter {
+final class TaskPresenter {
     
     weak var view: TaskInput?
     

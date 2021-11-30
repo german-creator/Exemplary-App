@@ -11,7 +11,7 @@ protocol RootModuleInput: AnyObject {
     func configureMainView()
 }
 
-class RootModule {
+final class RootModule {
         
     private let router: RootRouter
     private let presenter: RootPresenter

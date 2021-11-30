@@ -23,6 +23,6 @@ extension TaskRoute where Self: RouterProtocol {
     }
 }
 
-class TaskRouter: Router<TaskViewController>, TaskRouter.Routes {
+final class TaskRouter: Router<TaskViewController>, TaskRouter.Routes {
     typealias Routes = Closable & SelectDateRoute & BottomContainerRoute
 }

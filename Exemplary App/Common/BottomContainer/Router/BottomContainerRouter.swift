@@ -7,7 +7,8 @@
 
 import UIKit
 
-typealias BottomContainer = ((Transition) -> UIViewController) -> (viewController: UIViewController, transition: Transition)
+typealias BottomContainer = ((Transition) -> UIViewController) -> (viewController: UIViewController,
+                                                                   transition: Transition)
 
 protocol BottomContainerRoute {
     func getBottomContainer() -> BottomContainer

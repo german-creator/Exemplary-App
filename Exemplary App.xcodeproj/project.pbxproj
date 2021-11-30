@@ -22,8 +22,9 @@
 		BA6881AD272ECF5400BBEB4B /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6881AC272ECF5400BBEB4B /* CalendarHelper.swift */; };
 		BA753976274B9C1200D4728B /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA753975274B9C1200D4728B /* CommonError.swift */; };
 		BA753978274BAEE500D4728B /* TaskDate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA753977274BAEE500D4728B /* TaskDate+CoreDataClass.swift */; };
+		BA93643227556F4B0061EFDA /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93643127556F4B0061EFDA /* R.generated.swift */; };
+		BA936436275628EE0061EFDA /* TaskStorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA936435275628EE0061EFDA /* TaskStorageHelper.swift */; };
 		BA9618CF2726F4AB00D958A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA9618D12726F4AB00D958A6 /* Localizable.strings */; };
-		BA9618DD27270AFA00D958A6 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9618DC27270AFA00D958A6 /* R.generated.swift */; };
 		BA97FC4E2753B97F00709759 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA97FC4A2753B97F00709759 /* TaskListViewController.swift */; };
 		BA97FC4F2753B97F00709759 /* TaskListModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA97FC4B2753B97F00709759 /* TaskListModule.swift */; };
 		BA97FC502753B97F00709759 /* TaskListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA97FC4C2753B97F00709759 /* TaskListPresenter.swift */; };
@@ -78,8 +79,9 @@
 		BA6881AC272ECF5400BBEB4B /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		BA753975274B9C1200D4728B /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
 		BA753977274BAEE500D4728B /* TaskDate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskDate+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BA93643127556F4B0061EFDA /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		BA936435275628EE0061EFDA /* TaskStorageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStorageHelper.swift; sourceTree = "<group>"; };
 		BA9618D02726F4AB00D958A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		BA9618DC27270AFA00D958A6 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		BA97FC4A2753B97F00709759 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		BA97FC4B2753B97F00709759 /* TaskListModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListModule.swift; sourceTree = "<group>"; };
 		BA97FC4C2753B97F00709759 /* TaskListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListPresenter.swift; sourceTree = "<group>"; };
@@ -209,6 +211,23 @@
 			path = ActiveButton;
 			sourceTree = "<group>";
 		};
+		BA93643027556EDA0061EFDA /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				BA93643127556F4B0061EFDA /* R.generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		BA936434275628CC0061EFDA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BA3E1152274A834100EA2EE4 /* StorageHelper.swift */,
+				BA936435275628EE0061EFDA /* TaskStorageHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		BA97FC492753B95300709759 /* TaskList */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,7 +328,7 @@
 			children = (
 				BAB48CA82749569200ECB333 /* Exemplary_App.xcdatamodeld */,
 				BA0DA63827299B3A00CEA2D6 /* Models */,
-				BA3E1152274A834100EA2EE4 /* StorageHelper.swift */,
+				BA936434275628CC0061EFDA /* Helpers */,
 				BA753975274B9C1200D4728B /* CommonError.swift */,
 			);
 			path = Storage;
@@ -350,7 +369,7 @@
 		BAAF5A6326DBAC39001A2545 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				BA9618DC27270AFA00D958A6 /* R.generated.swift */,
+				BA93643027556EDA0061EFDA /* Generated */,
 				BAAF5A5526DBABD1001A2545 /* LaunchScreen.storyboard */,
 				BA476C302709B48500A07DF3 /* Constants.swift */,
 			);
@@ -570,6 +589,7 @@
 				BAAF5A4426DBABCD001A2545 /* Frameworks */,
 				BAAF5A4526DBABCD001A2545 /* Resources */,
 				3C4F9CD414CF18CD2E6A944C /* [CP] Embed Pods Frameworks */,
+				BA936433275618A40061EFDA /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -665,6 +685,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Exemplary App/Pods-Exemplary App-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BA936433275618A40061EFDA /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		BA9618DB27270A4500D958A6 /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -679,11 +717,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/${PROJECT_NAME}/SupportingFiles/Generated/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $ACTION != \"indexbuild\" ]; then\n  \"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\nfi\n";
+			shellScript = "if [ $ACTION != \"indexbuild\" ]; then\n  \"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/${PROJECT_NAME}/SupportingFiles/Generated/R.generated.swift\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -714,7 +752,6 @@
 				BA1277C426EE6300006B4CEF /* DateFormatter.swift in Sources */,
 				BAE03D60271DB80500F07F9D /* BottomContainerRouter.swift in Sources */,
 				BAE8B30F272EC88300B73726 /* CalendarCollectionViewCell.swift in Sources */,
-				BA9618DD27270AFA00D958A6 /* R.generated.swift in Sources */,
 				BA97FC4F2753B97F00709759 /* TaskListModule.swift in Sources */,
 				BA3BA4D82711C21B0095E9F9 /* Router.swift in Sources */,
 				BABD2E8827468AD600C3D177 /* TaskCreation.swift in Sources */,
@@ -725,10 +762,12 @@
 				BA28E110272DA301009223BA /* ActiveButton.swift in Sources */,
 				BAAF5A6F26DBAE29001A2545 /* RootRouter.swift in Sources */,
 				BAE03D53271DB2B800F07F9D /* TaskViewController.swift in Sources */,
+				BA936436275628EE0061EFDA /* TaskStorageHelper.swift in Sources */,
 				BABD2E86274686DF00C3D177 /* UIImage.swift in Sources */,
 				BA97FC572753BA8F00709759 /* TaskListService.swift in Sources */,
 				BA753976274B9C1200D4728B /* CommonError.swift in Sources */,
 				BA6881AD272ECF5400BBEB4B /* CalendarHelper.swift in Sources */,
+				BA93643227556F4B0061EFDA /* R.generated.swift in Sources */,
 				BA97FC512753B97F00709759 /* TaskListRouter.swift in Sources */,
 				BAE03D62271DB86800F07F9D /* BottomContainerViewController.swift in Sources */,
 				BA3E1153274A834100EA2EE4 /* StorageHelper.swift in Sources */,
@@ -818,6 +857,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -874,6 +914,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

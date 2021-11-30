@@ -48,7 +48,7 @@ class InputTextView: UITextView {
     }
     
     private func initSetup() {
-        // TextField inset imitation
+        // textField inset imitation
         textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
         
         addSubview(placeholderLabel)

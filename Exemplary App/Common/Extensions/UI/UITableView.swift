@@ -57,7 +57,7 @@ extension UITableView {
         separatorStyle = .none
     }
     
-    func removeEmptyView(){
+    func removeEmptyView() {
         backgroundView = nil
         separatorStyle = .singleLine
     }

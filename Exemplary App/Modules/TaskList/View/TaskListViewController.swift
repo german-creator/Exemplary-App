@@ -24,13 +24,13 @@ struct EmptyViewModel {
 
 protocol TaskListViewInput: AnyObject {
     func reloadData()
-    func setAvalibleCellSwipe(avalible: [CellSwipeType])
     func setTitle(_ text: String)
+    func setAvalibleCellSwipe(avalible: [CellSwipeType])
     func setNavigationRightButton(with type: TaskListRightButtonType)
     func showError(title: String, message: String?)
 }
 
-class TaskListViewController: UIViewController {
+final class TaskListViewController: UIViewController {
     
     var output: TaskListViewOutput!
     
@@ -77,7 +77,7 @@ class TaskListViewController: UIViewController {
     }
     
     @objc
-    private func didTapNavigationRightButton(){
+    private func didTapNavigationRightButton() {
         output.didTapRightButton()
     }
     
@@ -152,12 +152,12 @@ extension TaskListViewController: TaskListViewInput {
         tableView.reloadData()
     }
     
-    func setAvalibleCellSwipe(avalible: [CellSwipeType]) {
-        avalibleCellSwipe = avalible
-    }
-    
     func setTitle(_ title: String) {
         navigationItem.title = title
+    }
+    
+    func setAvalibleCellSwipe(avalible: [CellSwipeType]) {
+        avalibleCellSwipe = avalible
     }
     
     func setNavigationRightButton(with type: TaskListRightButtonType) {
