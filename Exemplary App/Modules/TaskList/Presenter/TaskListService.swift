@@ -29,10 +29,12 @@ final class TaskListService {
     let monitor: ListMonitor<Task>
     weak var output: TaskListServiceOutput?
     
+    let taskOrder = OrderBy<Task>(.ascending(\.taskDate?.day))
+    
     init(mode: TaskListMode) {
         self.mode = mode
         self.monitor = CoreStoreDefaults.dataStack.monitorList(
-            From<Task>().orderBy(.ascending(\.title)).where(\.isComplete == (mode == .complitedTasks)))
+            From<Task>().orderBy(taskOrder).where(\.isComplete == (mode == .complitedTasks)))
     }
 }
 
